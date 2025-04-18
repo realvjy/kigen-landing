@@ -3,6 +3,7 @@ import Image from "next/image";
 import styles from "./page.module.css";
 import * as React from 'react';
 import styled from 'styled-components'
+import { Container } from "./ReusableUI";
 
 
 
@@ -11,7 +12,7 @@ export default function Header() {
         <Section>
             <Container>
                 <Logo>
-                    <img src="kigen-logo.svg" />
+                    <img src="kigen-logo-color.png" />
                     <Content>
                         <h1>Create Design System Variables and Styles Fast</h1>
                         <p>A faster way to start design systems. Use Kigen to create your core variables and styles in just a few clicks.</p>
@@ -21,14 +22,14 @@ export default function Header() {
 
             </Container>
             <img
-                src="/bg-blur.png"
+                src="/bg-blur.svg"
                 alt="Background Blur"
                 className="bg-blur"
             />
             <ScreenUI>
-
-                <img src="figma-ui.png" />
-                <img className="kigen-ui" src="kigen-ui.png" />
+                <img src="figma-ui-light.png" />
+                <div className="blur-bottom"></div>
+                <img className="kigen-ui" src="kigen-ui-light.png" />
             </ScreenUI>
         </Section>
     )
@@ -37,17 +38,19 @@ export default function Header() {
 const Section = styled.section`
   display: flex;
   flex-direction: column;
+  position: relative;
   .bg-blur {
         position: absolute;
-        top: 220px;
+        top: 320px;
         left: 50%; /* Center horizontally */
         transform: translateX(-50%); /* Adjust for exact centering */
-        max-width: 80%; /* Adjust as needed */
+        max-width: 90%; /* Adjust as needed */
         height: auto; /* Maintain aspect ratio */
         z-index: -2;
         object-fit: cover; /* Ensures the image covers the area */
         object-position: top center; /* Position at top center */
     }
+
 `
 const Button = styled.a`
   display: flex;
@@ -94,13 +97,9 @@ const Content = styled.div`
   }
 `
 
-const Container = styled.div`
-    max-width: 1240px;
-    margin: 0 auto;
-`
 
 const ScreenUI = styled.div`
-    max-width: 1440px;
+    max-width: 1200px;
     display: flex;
     flex-direction: column;
     background-color: rgba(40,40,40,0.2);
@@ -108,7 +107,7 @@ const ScreenUI = styled.div`
     margin: 0 auto;
     position: relative;
     --border-width: 1px;
-    --border-radius: 20px;
+    --border-radius: 12px;
     z-index: -1;
     position: relative;
     border-radius: var(--border-radius);
@@ -121,7 +120,8 @@ const ScreenUI = styled.div`
         inset: 0;
         padding: var(--border-width);
         border-radius: var(--border-radius);
-        background: linear-gradient(180deg, #0099F8 0%, #0F0092 40.87%, rgba(15, 0, 146, 0) 96.63%);
+        /* background: linear-gradient(90deg, #A142FF 0%, #42D0FF 20.67%, #42A1FF 44.71%, #A1FF42 75%, #FF4242 100%); */
+        background-color: rgba(40,40,40,0.02);
         -webkit-mask: 
             linear-gradient(#fff 0 0) content-box,
             linear-gradient(#fff 0 0);
@@ -130,17 +130,27 @@ const ScreenUI = styled.div`
         pointer-events: none;
     }
     
-
-    img{
-        width: 100%;
+    .blur-bottom{
+        height: 500px;
+        background: linear-gradient(180deg, rgba(250, 250, 250, 0) 0%, #FAFAFA 100%);
+        position: absolute;
+        bottom: 0;
+        left: -2px;
+        width: calc(100% + 4px);
     }
-
 
     .kigen-ui{
         position: absolute;
         left: 50%;
         top: 50%;
         transform: translate(-50%, -50%); 
-        max-width: 375px;
+        max-width: 320px;
+        box-shadow: rgba(0, 0, 0, 0.04) 0px 0px 2px, rgba(0, 0, 0, 0.1) 0px 20px 34px, rgba(0, 0, 0, 0.11) 0px 4px 10px, rgba(0, 0, 0, 0.1) 0px 4px 24px, rgba(0, 0, 0, 0.1) 0px 0px 1px 1px;
     }
+    img{
+        width: 100%;
+        border-radius: var(--border-radius);
+    }
+
+
 `

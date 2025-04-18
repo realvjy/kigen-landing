@@ -5,6 +5,7 @@ import * as React from 'react';
 import styled from 'styled-components'
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
+import Features from "@/components/Features";
 
 
 
@@ -12,6 +13,7 @@ export default function Home() {
   return (
     <Main>
       <Header />
+      {/* <Features /> */}
       <Footer />
     </Main>
   )

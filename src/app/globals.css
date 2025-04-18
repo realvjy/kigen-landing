@@ -1,6 +1,6 @@
 :root {
-  --background: #010103;
-  --foreground: #fff;
+  --background: #fafafa;
+  --foreground: #161718;
 }
 
 
@@ -19,7 +19,7 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   min-height: 100vh;
-  &::before{
+  /* &::before{
     content: '';
     position: absolute;
     top: 0;
@@ -32,9 +32,9 @@ body {
     opacity: 0.3; 
     pointer-events: none; 
     z-index: -1;
-  }
+  } */
   &::after {
-    content: '';
+    /* content: '';
     position: absolute;
     top: 0;
     left: 0;
@@ -43,12 +43,13 @@ body {
     background: radial-gradient(
       circle at center,
       transparent 0%,
-      transparent 50%, /* Start fading later */
-      rgba(0, 0, 0, 0.8) 100% /* Reduce opacity for smoother transition */
-    );
-    pointer-events: none;
-    z-index: -1;
+      transparent 50%,
+      rgba(0, 0, 0, 0.8) 100% 
+    ); */
+    /* pointer-events: none;
+    z-index: -1; */
   }
+  
 }
 
 * {

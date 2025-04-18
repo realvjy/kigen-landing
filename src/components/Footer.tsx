@@ -8,37 +8,37 @@ import Link from "next/link";
 
 
 export default function Footer() {
-    return (
-        <Section>
-            <Container>
-                <div className="footer">
-                    <Wrapper>
-                        made by
-                        <span>
-                            <Link target={"_blank"} href={"https://vjy.me?kigen"}>
-                                <img src="realvjy.svg" className="img-r" />
-                            </Link>
-                        </span>
-                        at
-                        <span>
-                            <Link
-                                target={"_blank"}
-                                href={"https://overlayz.studio?figmaplugin"}
-                            >
-                                @overlayz
-                            </Link>
-                        </span>
-                        <span className={"img"}>
-                            <Link target="" href={"https://x.com/realvjy"}>
-                                <img src={"twitter.svg"} />
-                            </Link>
-                        </span>
-                    </Wrapper>
-                </div>
+  return (
+    <Section>
+      <Container>
+        <div className="footer">
+          <Wrapper>
+            made by
+            <span>
+              <Link target={"_blank"} href={"https://vjy.me?kigen"}>
+                <img src="realvjy.svg" className="img-r" />
+              </Link>
+            </span>
+            at
+            <span>
+              <Link
+                target={"_blank"}
+                href={"https://overlayz.studio?figmaplugin"}
+              >
+                @overlayz
+              </Link>
+            </span>
+            <span className={"img"}>
+              <Link target="" href={"https://x.com/realvjy"}>
+                <img src={"twitter.svg"} />
+              </Link>
+            </span>
+          </Wrapper>
+        </div>
 
-            </Container>
-        </Section>
-    )
+      </Container>
+    </Section>
+  )
 }
 
 const Section = styled.section`
@@ -56,7 +56,7 @@ const Wrapper = styled.div`
   letter-spacing: -0.2px;
   font-weight: 500;
   width: 100%;
-  color: rgba(255, 255, 255, 0.8);
+  color: var(--foreground);
   gap: 4px;
   align-items: center;
   span {
@@ -67,7 +67,7 @@ const Wrapper = styled.div`
     }
     a {
       text-decoration: none;
-      color: rgba(255, 255, 255, 1);
+      color: var(--foreground);
       opacity: 0.9;
       &:hover {
         opacity: 1;
