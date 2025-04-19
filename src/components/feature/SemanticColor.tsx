@@ -1,20 +1,37 @@
 "use client"
-import React, { useEffect, useState } from 'react';
+import * as React from 'react';
+import { useEffect, useState, useRef } from 'react';
 import { motion } from 'framer-motion';
 import styled from 'styled-components';
+import { animate, svg } from 'animejs';
+import AnimatedPathTrail from '../AnimatedPathTrail';
+import { Container } from '../ReusableUI';
 
 const SemanticColor = () => {
-    const [activeConnection, setActiveConnection] = useState(0);
+    // const [activeConnection, setActiveConnection] = useState(0);
+    const pathRef = useRef<SVGPathElement>(null);
+    const dotRef = useRef<SVGCircleElement>(null);
+    const trailRef = useRef<SVGPathElement>(null);
+    const activeConnection = 2;
 
-    // Auto-cycle through connections
     useEffect(() => {
-        const interval = setInterval(() => {
-            setActiveConnection(prev => (prev + 1) % 4);
-        }, 2500);
+        if (!pathRef.current || !trailRef.current) return;
 
-        return () => clearInterval(interval);
+        // Create animated dash offset for energy pulse effect
+        const trailAnimation = animate(
+            trailRef.current,
+            {
+                strokeDashoffset: [0, -30],  // Animate the dash offset to create moving effect
+                easing: 'linear',
+                duration: 1500,
+                loop: true
+            }
+        );
+
+        return () => {
+            trailAnimation.pause();
+        };
     }, []);
-
     // Token data matches the image
     const tokens = [
         {
@@ -59,21 +76,21 @@ const SemanticColor = () => {
     return (
         <Container>
             {/* Token Pills */}
-            {tokens.map((token, index) => (
-                <TokenPill
-                    key={token.id}
-                    style={{
-                        top: token.top,
-                        left: token.left,
-                        border: index === activeConnection ? `2px solid ${token.color}` : '1px solid #eaeaea'
-                    }}
-                    active={index === activeConnection}
-                >
-                    <ColorDot style={{ backgroundColor: token.color }} />
-                    <TokenName>{token.id}</TokenName>
-                </TokenPill>
-            ))}
 
+            <div style={{ width: '150px', height: '100%' }}>
+                <AnimatedPathTrail
+                    pathData="M9 6L33.4959 6C42.3324 6 49.4959 13.1634 49.4959 22L49.4959 70C49.4959 78.8366 56.6593 86 65.4959 86H79"
+                    viewBox="0 0 90 90"  // Should match your path's natural dimensions
+                    baseColor="#ccc"
+                    trailColor="#00f"
+                    trailWidth={8}
+                    baseWidth={1}
+                    trailLength={20}
+                    animationDuration={4000}
+                    svgWidth={90}
+                    svgHeight={90}
+                />
+            </div>
             {/* Center color palette */}
             <ColorPalette>
                 {colorPalette.map((color, index) => (
@@ -84,102 +101,13 @@ const SemanticColor = () => {
                 ))}
             </ColorPalette>
 
-            {/* SVG for the connection lines */}
-            <SVGContainer>
-                <defs>
-                    {/* Moving gradient animation */}
-                    <linearGradient id="movingGradient" x1="0%" y1="0%" x2="100%" y2="0%">
-                        <motion.stop
-                            offset="0%"
-                            stopColor="rgba(255,255,255,0)"
-                            animate={{ offset: ["0%", "100%"] }}
-                            transition={{
-                                repeat: Infinity,
-                                duration: 2,
-                                ease: "linear"
-                            }}
-                        />
-                        <motion.stop
-                            offset="50%"
-                            stopColor="rgba(255,255,255,0.8)"
-                            animate={{ offset: ["0%", "100%"] }}
-                            transition={{
-                                repeat: Infinity,
-                                duration: 2,
-                                ease: "linear"
-                            }}
-                        />
-                        <motion.stop
-                            offset="100%"
-                            stopColor="rgba(255,255,255,0)"
-                            animate={{ offset: ["0%", "100%"] }}
-                            transition={{
-                                repeat: Infinity,
-                                duration: 2,
-                                ease: "linear"
-                            }}
-                        />
-                    </linearGradient>
 
-                    {/* Gradient for each token */}
-                    {tokens.map((token, index) => (
-                        <linearGradient
-                            key={`gradient-${index}`}
-                            id={`lineGradient-${index}`}
-                            gradientUnits="userSpaceOnUse"
-                            x1="0%"
-                            y1="0%"
-                            x2="100%"
-                            y2="0%"
-                        >
-                            <stop offset="0%" stopColor={token.color} stopOpacity="0.3" />
-                            <stop offset="100%" stopColor={token.color} stopOpacity="0.6" />
-                        </linearGradient>
-                    ))}
-                </defs>
 
-                {/* Connection lines */}
-                {tokens.map((token, index) => {
-                    const isActive = index === activeConnection;
-
-                    return (
-                        <g key={`connection-${index}`}>
-                            {/* Base dotted line */}
-                            <path
-                                d={token.path}
-                                stroke={`url(#lineGradient-${index})`}
-                                strokeWidth="2"
-                                strokeDasharray="5,5"
-                                fill="none"
-                                opacity={isActive ? 1 : 0.5}
-                            />
-
-                            {/* Animated gradient overlay (only on active connection) */}
-                            {isActive && (
-                                <path
-                                    d={token.path}
-                                    stroke="url(#movingGradient)"
-                                    strokeWidth="3"
-                                    strokeDasharray="5,5"
-                                    fill="none"
-                                />
-                            )}
-                        </g>
-                    );
-                })}
-            </SVGContainer>
         </Container>
     );
 };
 
 // Styled Components
-const Container = styled.div`
-  position: relative;
-  width: 100%;
-  height: 600px;
-  background-color: #f5f7fa;
-  overflow: hidden;
-`;
 
 const TokenPill = styled.div<{ active?: boolean }>`
   position: absolute;
@@ -230,14 +158,6 @@ const ColorBox = styled.div`
   border-radius: 8px;
 `;
 
-const SVGContainer = styled.svg`
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  pointer-events: none;
-  z-index: 0;
-`;
+
 
 export default SemanticColor;

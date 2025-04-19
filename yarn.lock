@@ -77,6 +77,11 @@
   resolved "https://registry.npmjs.org/@types/stylis/-/stylis-4.2.5.tgz"
   integrity sha512-1Xve+NMN7FWjY14vLoY5tL3BVEQ/n42YLwaqJIPYhotZ9uBHt87VceMwWQpzmdEt2TNXIorIFG+YeCUUW7RInw==
 
+animejs@^4.0.1:
+  version "4.0.1"
+  resolved "https://registry.npmjs.org/animejs/-/animejs-4.0.1.tgz"
+  integrity sha512-QbNbOrToapaZ7ebNuQpRgOhEGeyg/r8+bOUKbaaDNI/64XyjDrguVWW6Xgnt8PX+HHs0aAi34WpetczSbRZ3dQ==
+
 aos@^2.3.4:
   version "2.3.4"
   resolved "https://registry.npmjs.org/aos/-/aos-2.3.4.tgz"

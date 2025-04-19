@@ -2,16 +2,22 @@
 import Image from "next/image";
 import styles from "./page.module.css";
 import * as React from 'react';
+import { useEffect, useState, useRef } from 'react';
+
 import styled from 'styled-components'
 import Link from "next/link";
 import { Container } from "./ReusableUI";
 import { motion } from 'framer-motion'
 import ColorToken from "./feature/ColorToken";
 import SemanticColor from "./feature/SemanticColor";
+import { animate, createScope, Scope } from 'animejs';
+import AnimatedPathTrail from "./AnimatedPathTrail";
 
 
 
 export default function Features() {
+
+
   const features = [
     {
       title: "Color tokens",
@@ -73,6 +79,21 @@ export default function Features() {
             </motion.div>
           ))}
         </FeatureGrid>
+        <div style={{ width: '150px', height: '100%' }}>
+          <AnimatedPathTrail
+            pathData="M9 6L33.4959 6C42.3324 6 49.4959 13.1634 49.4959 22L49.4959 70C49.4959 78.8366 56.6593 86 65.4959 86H79"
+            viewBox="0 0 90 90"  // Should match your path's natural dimensions
+            baseColor="#ccc"
+            trailColor="#00f"
+            trailWidth={8}
+            baseWidth={1}
+            trailLength={20}
+            animationDuration={4000}
+            svgWidth={90}
+            svgHeight={90}
+          />
+        </div>
+
       </Container>
     </Section>
   )

@@ -6,6 +6,8 @@ import styled from 'styled-components'
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import Features from "@/components/Features";
+import SuzukaAnimation from "@/components/SuzukaAnimation";
+import AnimatedPathTrail from "@/components/AnimatedPathTrail";
 
 
 
