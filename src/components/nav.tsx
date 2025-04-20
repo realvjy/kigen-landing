@@ -1,10 +1,8 @@
 "use client"
 import Image from "next/image";
-import styles from "./page.module.css";
 import * as React from 'react';
 import styled from 'styled-components'
-import Link from "next/link";
-import { Container } from "./ReusableUI";
+import { Container, LinkScroll } from "./ReusableUI";
 
 
 
@@ -22,9 +20,9 @@ export default function Nav() {
           </Left>
           <Right>
             <Links>
-              <a href="#">About</a>
-              <a href="#">Features</a>
-              <a href="#">Install</a>
+              <LinkScroll href="#features">Features</LinkScroll>
+              <LinkScroll href="#pricing">Pricing</LinkScroll>
+              <LinkScroll href="#faq">faq</LinkScroll>
             </Links>
           </Right>
         </NavWrap>

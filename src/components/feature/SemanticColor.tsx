@@ -8,11 +8,11 @@ import Link from "next/link";
 
 
 export default function SemanticColor() {
-  return (
-    <FeaturBox>
-
-    </FeaturBox>
-  )
+    return (
+        <FeaturBox>
+            Some text
+        </FeaturBox>
+    )
 }
 
 const FeaturBox = styled.div`
@@ -30,6 +30,7 @@ const Wrapper = styled.div`
   letter-spacing: -0.2px;
   font-weight: 500;
   width: 100%;
+
   color: var(--foreground);
   gap: 4px;
   align-items: center;

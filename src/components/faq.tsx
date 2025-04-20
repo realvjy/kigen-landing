@@ -6,98 +6,58 @@ import { useEffect, useState, useRef } from 'react';
 
 import styled from 'styled-components'
 import Link from "next/link";
-import { Container, SmallTag, TagWrapper } from "./ReusableUI";
-import { motion } from 'framer-motion'
-import ColorToken from "./feature/ColorToken";
-import { animate, createScope, Scope } from 'animejs';
-import AnimatedPathTrail from "./AnimatedPathTrail";
-import SemanticColor from "./feature/SemanticColor";
+import { Container, SmallTag, TagWrapper, Wrapper } from "./ReusableUI";
+import { motion, AnimatePresence } from 'framer-motion';
+import Collapsible from "./Collapsible";
 
 
 
-export default function Features() {
+export default function FAQ() {
 
 
-  const features = [
+  const FAQData = [
     {
-      title: "Color tokens",
+      question: "Color tokens",
       description: "A collection of base color palettes sourced from popular design systems like Material, Fluent, and Polaris—ready to use and extend for your brand.",
-      component: ColorToken
     },
     {
-      title: "Typography tokens",
+      question: "Typography tokens",
       description: "Pre-configured typography scales based on popular design systems, ready to customize for your brand.",
-      image: "/color-token.png"
     },
     {
-      title: "Spacing tokens",
+      question: "Spacing tokens",
       description: "Consistent spacing scales that help maintain rhythm in your designs across all platforms.",
-      image: "/feature.png"
     },
     {
-      title: "Shadow tokens",
+      question: "Shadow tokens",
       description: "Elevation systems with ready-to-use shadow values for creating depth in your interfaces.",
-      image: "/feature.png"
     },
     {
-      title: "Border radius tokens",
+      question: "Border radius tokens",
       description: "Comprehensive set of border radius values to maintain consistent component styling.",
-      image: "/feature.png"
     },
     {
-      title: "Export options",
+      question: "Export options",
       description: "Export your design tokens to various formats including CSS, SCSS, JSON, and more.",
-      image: "/feature.png"
     }
   ]
   return (
-    <Section id="features">
+    <Section id="faq">
       <Container className="center">
         <TagWrapper>
-          <SmallTag className="pink">Core Feature</SmallTag>
+          <SmallTag className="green">FAQ</SmallTag>
         </TagWrapper>
-        <Title>Our Amazing Features</Title>
-        <FeatureGrid>
-          {features.map((feature, index) => (
-            <motion.div
-              key={index}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: index * 0.1 }}
-            >
-              <FeatureCard>
-                <FeatureContent>
-                  {feature.component ? (
-                    <feature.component />
-                  ) : (
-                    <FeatureImage>
-                      <img src={feature.image} alt={feature.title} />
-                    </FeatureImage>
-                  )}
-                </FeatureContent>
-                <FeatureText>
-                  <h3>{feature.title}</h3>
-                  <p>{feature.description}</p>
-                </FeatureText>
-              </FeatureCard>
-            </motion.div>
-          ))}
-        </FeatureGrid>
-        {/* <div style={{ width: '150px', height: '100%' }}>
-          <AnimatedPathTrail
-            pathData="M9 6L33.4959 6C42.3324 6 49.4959 13.1634 49.4959 22L49.4959 70C49.4959 78.8366 56.6593 86 65.4959 86H79"
-            viewBox="0 0 90 90"  // Should match your path's natural dimensions
-            baseColor="#ccc"
-            trailColor="#00f"
-            trailWidth={8}
-            baseWidth={1}
-            trailLength={20}
-            animationDuration={4000}
-            svgWidth={90}
-            svgHeight={90}
-          />
-        </div> */}
+        <Title>Frequently asked questions</Title>
+        <Wrapper>
+          <Content>
+            {FAQData.map((item, index) => (
+              <Collapsible key={index} question={item.question}>
+                {item.description}
+              </Collapsible>
+            ))}
+          </Content>
+        </Wrapper>
+
 
       </Container>
     </Section>
@@ -108,7 +68,7 @@ const Section = styled.section`
   display: flex;
   flex-direction: column;
   padding-top: 100px;
-  margin-top: 100px;
+  margin-top: 200px;
 `
 
 
@@ -143,9 +103,11 @@ const Logo = styled.div`
 const Content = styled.div`
     display: flex;
     flex-direction: column;
-    gap: 20px;
+    gap: 16px;
     align-items: center;
     max-width: 600px;
+    margin-top: 30px;
+    width: 100%;
     h1{
         font-size: 48px;
         font-weight: 400;
@@ -167,7 +129,7 @@ const Title = styled.h2`
   letter-spacing: -1px;
   font-weight: 400;
   margin-top: 24px;
-  margin-bottom: 40px;
+  margin-bottom: 24px;
   @media (max-width: 700px) {
     font-size: 36px;
   }
@@ -176,7 +138,7 @@ const Title = styled.h2`
 const FeatureGrid = styled.div`
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 16px;
+  gap: 20px;
   margin-top: 20px;
   @media (max-width: 768px) {
     grid-template-columns: repeat(2, 1fr);
@@ -192,17 +154,19 @@ const FeatureGrid = styled.div`
 const FeatureImage = styled.div`
   background: rgba(255, 255, 255, 0.05);
   display: flex;
-  width: 100%;
+  justify-content: center;
+  align-items: center;
   img {
     max-width: 100%;
-    min-height: 280px;
+    height: auto;
   }
 `
 
 const FeatureContent = styled.div`
-  min-height: 280px;
-  width: 100%;
+  margin-bottom: 1rem;
+  min-height: 200px;
   display: flex;
+  align-items: center;
   justify-content: center;
 `;
 
@@ -211,7 +175,6 @@ const FeatureCard = styled.div`
   background: #FFFFFF;
   border: 1px solid rgba(0, 0, 0, 0.08);
   box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.04), inset 0px 0px 40px 2px #FFFFFF;
-  background-clip: padding-box;
   border-radius: 16px;
   height: 100%; 
   display: flex;
@@ -225,8 +188,8 @@ const FeatureCard = styled.div`
   }
 
   p {
-    font-size: 15px;
-    line-height: 20px;
+    font-size: 16px;
+    line-height: 1.2;
     color: var(--gray2);
     flex-grow: 1; 
     margin-bottom: 20px;
