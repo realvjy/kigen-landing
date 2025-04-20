@@ -3,6 +3,7 @@
 import React, { useState } from "react";
 import { useServerInsertedHTML } from "next/navigation";
 import { ServerStyleSheet, StyleSheetManager } from "styled-components";
+import { AnimatedButtonGlobalStyle } from "./ReusableUI";
 
 export default function StyledComponentsRegistry({
     children,
@@ -22,6 +23,7 @@ export default function StyledComponentsRegistry({
     return (
         <StyleSheetManager sheet={styledComponentsStyleSheet.instance}>
             {children}
+            <AnimatedButtonGlobalStyle />
         </StyleSheetManager>
     );
 }
