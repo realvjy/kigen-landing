@@ -9,94 +9,94 @@ import Link from "next/link";
 import { Container } from "./ReusableUI";
 import { motion } from 'framer-motion'
 import ColorToken from "./feature/ColorToken";
-import SemanticColor from "./feature/SemanticColor";
 import { animate, createScope, Scope } from 'animejs';
 import AnimatedPathTrail from "./AnimatedPathTrail";
+import SemanticColor from "./feature/SemanticColor";
 
 
 
 export default function Features() {
 
 
-  const features = [
-    {
-      title: "Color tokens",
-      description: "A collection of base color palettes sourced from popular design systems like Material, Fluent, and Polaris—ready to use and extend for your brand.",
-      component: ColorToken
-    },
-    {
-      title: "Typography tokens",
-      description: "Pre-configured typography scales based on popular design systems, ready to customize for your brand.",
-      component: SemanticColor
-    },
-    {
-      title: "Spacing tokens",
-      description: "Consistent spacing scales that help maintain rhythm in your designs across all platforms.",
-      image: "/feature.png"
-    },
-    {
-      title: "Shadow tokens",
-      description: "Elevation systems with ready-to-use shadow values for creating depth in your interfaces.",
-      image: "/feature.png"
-    },
-    {
-      title: "Border radius tokens",
-      description: "Comprehensive set of border radius values to maintain consistent component styling.",
-      image: "/feature.png"
-    },
-    {
-      title: "Export options",
-      description: "Export your design tokens to various formats including CSS, SCSS, JSON, and more.",
-      image: "/feature.png"
-    }
-  ]
-  return (
-    <Section>
-      <Container>
-        <Title>Our Amazing Features</Title>
-        <FeatureGrid>
-          {features.map((feature, index) => (
-            <motion.div
-              key={index}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: index * 0.1 }}
-            >
-              <FeatureCard>
-                <FeatureContent>
-                  {feature.component ? (
-                    <feature.component />
-                  ) : (
-                    <FeatureImage>
-                      <img src={feature.image} alt={feature.title} />
-                    </FeatureImage>
-                  )}
-                </FeatureContent>
-                <h3>{feature.title}</h3>
-                <p>{feature.description}</p>
-              </FeatureCard>
-            </motion.div>
-          ))}
-        </FeatureGrid>
-        <div style={{ width: '150px', height: '100%' }}>
-          <AnimatedPathTrail
-            pathData="M9 6L33.4959 6C42.3324 6 49.4959 13.1634 49.4959 22L49.4959 70C49.4959 78.8366 56.6593 86 65.4959 86H79"
-            viewBox="0 0 90 90"  // Should match your path's natural dimensions
-            baseColor="#ccc"
-            trailColor="#00f"
-            trailWidth={8}
-            baseWidth={1}
-            trailLength={20}
-            animationDuration={4000}
-            svgWidth={90}
-            svgHeight={90}
-          />
-        </div>
+    const features = [
+        {
+            title: "Color tokens",
+            description: "A collection of base color palettes sourced from popular design systems like Material, Fluent, and Polaris—ready to use and extend for your brand.",
+            component: ColorToken
+        },
+        {
+            title: "Typography tokens",
+            description: "Pre-configured typography scales based on popular design systems, ready to customize for your brand.",
+            component: SemanticColor
+        },
+        {
+            title: "Spacing tokens",
+            description: "Consistent spacing scales that help maintain rhythm in your designs across all platforms.",
+            image: "/feature.png"
+        },
+        {
+            title: "Shadow tokens",
+            description: "Elevation systems with ready-to-use shadow values for creating depth in your interfaces.",
+            image: "/feature.png"
+        },
+        {
+            title: "Border radius tokens",
+            description: "Comprehensive set of border radius values to maintain consistent component styling.",
+            image: "/feature.png"
+        },
+        {
+            title: "Export options",
+            description: "Export your design tokens to various formats including CSS, SCSS, JSON, and more.",
+            image: "/feature.png"
+        }
+    ]
+    return (
+        <Section>
+            <Container>
+                <Title>Our Amazing Features</Title>
+                <FeatureGrid>
+                    {features.map((feature, index) => (
+                        <motion.div
+                            key={index}
+                            initial={{ opacity: 0, y: 20 }}
+                            whileInView={{ opacity: 1, y: 0 }}
+                            viewport={{ once: true }}
+                            transition={{ duration: 0.5, delay: index * 0.1 }}
+                        >
+                            <FeatureCard>
+                                <FeatureContent>
+                                    {feature.component ? (
+                                        <feature.component />
+                                    ) : (
+                                        <FeatureImage>
+                                            <img src={feature.image} alt={feature.title} />
+                                        </FeatureImage>
+                                    )}
+                                </FeatureContent>
+                                <h3>{feature.title}</h3>
+                                <p>{feature.description}</p>
+                            </FeatureCard>
+                        </motion.div>
+                    ))}
+                </FeatureGrid>
+                <div style={{ width: '150px', height: '100%' }}>
+                    <AnimatedPathTrail
+                        pathData="M9 6L33.4959 6C42.3324 6 49.4959 13.1634 49.4959 22L49.4959 70C49.4959 78.8366 56.6593 86 65.4959 86H79"
+                        viewBox="0 0 90 90"  // Should match your path's natural dimensions
+                        baseColor="#ccc"
+                        trailColor="#00f"
+                        trailWidth={8}
+                        baseWidth={1}
+                        trailLength={20}
+                        animationDuration={4000}
+                        svgWidth={90}
+                        svgHeight={90}
+                    />
+                </div>
 
-      </Container>
-    </Section>
-  )
+            </Container>
+        </Section>
+    )
 }
 
 const Section = styled.section`
@@ -161,8 +161,8 @@ const Title = styled.h2`
 
 const FeatureGrid = styled.div`
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 2rem;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
   margin-top: 2rem;
 
   @media (max-width: 768px) {

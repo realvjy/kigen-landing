@@ -3,7 +3,8 @@ import Image from "next/image";
 import styles from "./page.module.css";
 import * as React from 'react';
 import styled from 'styled-components'
-import { Container } from "./ReusableUI";
+import { Container, Gradient } from "./ReusableUI";
+import { motion } from "framer-motion";
 
 
 
@@ -12,9 +13,8 @@ export default function Header() {
         <Section>
             <Container>
                 <Logo>
-                    <img src="kigen-logo-color.png" />
                     <Content>
-                        <h1>Create Design System Variables and Styles Fast</h1>
+                        <h1>Create Design System <Gradient $variant="blue">Variables</Gradient> and <Gradient $variant="orange">Styles</Gradient> Fast</h1>
                         <p>A faster way to start design systems. Use Kigen to create your core variables and styles in just a few clicks.</p>
                     </Content>
                     <Button href="https://s.vjy.me/project-ds">Join Wait List</Button>
@@ -29,7 +29,26 @@ export default function Header() {
             <ScreenUI>
                 <img src="figma-ui-light.png" />
                 <div className="blur-bottom"></div>
-                <img className="kigen-ui" src="kigen-ui-light.png" />
+                <div
+                    style={{
+                        position: 'absolute',
+                        left: '50%',
+                        top: '50%',
+                        transform: 'translate(-50%, -50%)'
+                    }}>
+                    <motion.div
+                        initial={{ opacity: 0, y: 60 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{
+                            duration: 0.4,
+                            delay: 0.1,     // appears after the content animations
+                            ease: "easeOut"
+                        }}
+                    >
+                        <img className="kigen-ui" src="kigen-ui-light.png" />
+                    </motion.div>
+                </div>
+
             </ScreenUI>
         </Section>
     )
@@ -74,6 +93,9 @@ const Logo = styled.div`
   img{
     height: 40px;
   }
+  @media (max-width: 768px) {
+    padding: 40px 0;
+  }
 
 `
 
@@ -86,14 +108,17 @@ const Content = styled.div`
     h1{
         font-size: 48px;
         font-weight: 400;
-        line-height: 100%;
-        letter-spacing: -1.8px;
+        line-height: 110%;
+        letter-spacing: -2px;
+        span{}
     }
 
   p{
-    font-size: 20px;
-    opacity: 0.8;
+    font-size: 18px;
+    opacity: 0.4;
     font-weight: 300;
+    max-width: 500px;
+    letter-spacing: -0.4px;
   }
 `
 
@@ -140,10 +165,7 @@ const ScreenUI = styled.div`
     }
 
     .kigen-ui{
-        position: absolute;
-        left: 50%;
-        top: 50%;
-        transform: translate(-50%, -50%); 
+
         max-width: 320px;
         box-shadow: rgba(0, 0, 0, 0.04) 0px 0px 2px, rgba(0, 0, 0, 0.1) 0px 20px 34px, rgba(0, 0, 0, 0.11) 0px 4px 10px, rgba(0, 0, 0, 0.1) 0px 4px 24px, rgba(0, 0, 0, 0.1) 0px 0px 1px 1px;
     }
