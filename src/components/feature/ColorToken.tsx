@@ -304,8 +304,8 @@ export default function ColorToken() {
                     zIndex
                   }}
                   transition={{
-                    duration: 0.5,
-                    ease: "easeInOut"
+                    duration: 0.6,
+                    ease: [0.5, 0, 0, 1]
                   }}
                 >
                   {isCenter && (
@@ -330,8 +330,8 @@ export default function ColorToken() {
                       >
                         <defs>
                           <linearGradient id="blue-gradient" x1="0" y1="0" x2="1" y2="0">
-                            <stop offset="0%" stopColor="#2563eb" stopOpacity="1" />
-                            <stop offset="100%" stopColor="#2563eb" stopOpacity="0" />
+                            <stop offset="0%" stopColor="#FF24BD" stopOpacity="1" />
+                            <stop offset="100%" stopColor="#FF24BD" stopOpacity="0" />
                           </linearGradient>
                         </defs>
                         <motion.circle
@@ -344,7 +344,7 @@ export default function ColorToken() {
                           transform="rotate(-90 27 27)"
                           variants={{
                             initial: { pathLength: 0 },
-                            animate: { pathLength: 1, transition: { duration: 0.5, ease: "easeInOut" } },
+                            animate: { pathLength: 1, transition: { duration: 0.5, ease: [0.5, 0, 0, 1] } },
                             exit: { pathLength: 0, transition: { duration: 0.3, ease: "easeInOut" } }
                           }}
                         />
@@ -370,15 +370,14 @@ export default function ColorToken() {
                           x1={27}
                           y1={124}
                           x2={27}
-                          y2={150}
-                          stroke="#2563eb"
+                          y2={152}
+                          stroke="#FF24BD"
                           strokeWidth={1}
                           strokeLinecap="round"
                           opacity={0.7}
-                          strokeDasharray="2 2"
                           variants={{
                             initial: { pathLength: 0 },
-                            animate: { pathLength: 1, transition: { duration: 0.5, ease: "easeInOut" } },
+                            animate: { pathLength: 1, transition: { duration: 0.5, ease: [0.5, 0, 0, 1] } },
                             exit: { pathLength: 0, transition: { duration: 0.3, ease: "easeInOut" } }
                           }}
                         />
@@ -449,7 +448,6 @@ const FeaturBox = styled.div`
 `
 
 const Wrapper = styled.div`
-/* background-color: rgba(255, 0, 0, 0.416); */
   position: relative;
   background: linear-gradient(180deg, var(--gray-grad-1) 0%, var(--white) 80%);
   display: flex;
@@ -529,7 +527,7 @@ const LogoCarousel = styled.div`
     transform: translateY(-50%);
   }
   .logo-center {
-    
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.06), 0px 0px 0px 1px inset rgba(0, 0, 0, 0.08);
   }
 `;
 
@@ -610,7 +608,7 @@ const UIFrame = styled.div`
   border-radius: 12px;
   background-clip: border-box;
   background: linear-gradient(180deg, #F2F3F5 0%, #FFFFFF 16%);
-  box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.04), 0px 0px 0px 1px inset rgba(0, 0, 0, 0.08);
+  box-shadow: 0px -1px 2px rgba(0, 0, 0, 0.06), 0px 0px 0px 1px inset rgba(0, 0, 0, 0.08);
   .top{
     display: flex;
     flex-direction: row;
@@ -637,13 +635,13 @@ const UIFrame = styled.div`
     border-radius: 100%;
     display: inline-block;
     &:first-child{
-      background-color: #FF6751;
+      background-color: #FF24BD;
     }
     &:nth-child(2){
-      background-color: #FFBC36;
+      background-color: #feb119;
     }
     &:last-child{
-      background-color: #71DF4B;
+      background-color: #3dd852;
     }
   }
 `;

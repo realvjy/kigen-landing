@@ -1,53 +1,76 @@
 "use client"
-import Image from "next/image";
-import styles from "./page.module.css";
 import * as React from 'react';
 import { useEffect, useState, useRef } from 'react';
+import dynamic from "next/dynamic";
 
 import styled from 'styled-components'
-import Link from "next/link";
 import { Container, SmallTag, TagWrapper } from "./ReusableUI";
 import { motion } from 'framer-motion'
 import ColorToken from "./feature/ColorToken";
 import { animate, createScope, Scope } from 'animejs';
 import AnimatedPathTrail from "./AnimatedPathTrail";
-import SemanticColor from "./feature/SemanticColor";
+import cardTest from "@/assets/card-test.json";
+import SemanticColor from './feature/SemanticColor';
+import TypographyToken from './feature/TypographyToken';
+import Documentation from './feature/Documentation';
+import PresetSlide from './feature/PresetSlide';
+import MiscToken from './feature/MiscToken';
 
 
+const AnimatedLottie = dynamic(() => import("./feature/AnimatedLottie"), { ssr: false });
 
 export default function Features() {
 
+  const [animationType, setAnimationType] = useState<'draw' | 'pulse' | 'flow'>('draw');
+  const [direction, setDirection] = useState<'right' | 'left'>('right');
+  const [duration, setDuration] = useState<number>(2);
+  const [strokeColor, setStrokeColor] = useState<string>('#1d1d20');
+  const [showBackground, setShowBackground] = useState(true);
+  const path = 'M20 20 C40 10, 65 10, 95 80'; // Example curved path
+
+
+  // Available animation types
+  const animationTypes: Array<'draw' | 'pulse' | 'flow'> = ["draw", "pulse", "flow"];
+  const directions: Array<'right' | 'left'> = ["right", "left"];
+  const colorOptions: Record<string, string> = {
+    "Black": "#1d1d20",
+    "Blue": "#3b82f6",
+    "Green": "#10b981",
+    "Red": "#ef4444",
+    "Purple": "#8b5cf6"
+  };
 
   const features = [
     {
       title: "Color tokens",
-      description: "A collection of base color palettes sourced from popular design systems like Material, Fluent, and Polaris—ready to use and extend for your brand.",
-      component: ColorToken
+      description: "A collection of primitive color palettes sourced from popular design systems like Material, Fluent, and Polaris—ready to use and extend for your brand.",
+      component: <ColorToken />
+    },
+    {
+      title: "Semantic/Alias tokens",
+      description: "A pre-configured typography system with properly configured variables, seamlessly bound to text styles and ready for customization to match your brand.",
+      component: <SemanticColor />
     },
     {
       title: "Typography tokens",
-      description: "Pre-configured typography scales based on popular design systems, ready to customize for your brand.",
-      image: "/color-token.png"
-    },
-    {
-      title: "Spacing tokens",
       description: "Consistent spacing scales that help maintain rhythm in your designs across all platforms.",
-      image: "/feature.png"
+      component: <TypographyToken />
     },
     {
-      title: "Shadow tokens",
+      title: "Size & Misc Tokens",
       description: "Elevation systems with ready-to-use shadow values for creating depth in your interfaces.",
-      image: "/feature.png"
+      component: <MiscToken />
     },
     {
-      title: "Border radius tokens",
+      title: "Documentation",
       description: "Comprehensive set of border radius values to maintain consistent component styling.",
-      image: "/feature.png"
+      component: <Documentation />
     },
     {
-      title: "Export options",
+      title: "Presets options",
       description: "Export your design tokens to various formats including CSS, SCSS, JSON, and more.",
-      image: "/feature.png"
+      component: <PresetSlide />
+
     }
   ]
   return (
@@ -69,10 +92,10 @@ export default function Features() {
               <FeatureCard>
                 <FeatureContent>
                   {feature.component ? (
-                    <feature.component />
+                    feature.component
                   ) : (
                     <FeatureImage>
-                      <img src={feature.image} alt={feature.title} />
+                      {/* <img src={feature.image} alt={feature.title} /> */}
                     </FeatureImage>
                   )}
                 </FeatureContent>
@@ -83,24 +106,12 @@ export default function Features() {
               </FeatureCard>
             </motion.div>
           ))}
+
         </FeatureGrid>
-        {/* <div style={{ width: '150px', height: '100%' }}>
-          <AnimatedPathTrail
-            pathData="M9 6L33.4959 6C42.3324 6 49.4959 13.1634 49.4959 22L49.4959 70C49.4959 78.8366 56.6593 86 65.4959 86H79"
-            viewBox="0 0 90 90"  // Should match your path's natural dimensions
-            baseColor="#ccc"
-            trailColor="#00f"
-            trailWidth={8}
-            baseWidth={1}
-            trailLength={20}
-            animationDuration={4000}
-            svgWidth={90}
-            svgHeight={90}
-          />
-        </div> */}
+
 
       </Container>
-    </Section>
+    </Section >
   )
 }
 
@@ -225,7 +236,7 @@ const FeatureCard = styled.div`
   }
 
   p {
-    font-size: 15px;
+    font-size: 14px;
     line-height: 20px;
     color: var(--gray2);
     flex-grow: 1; 
@@ -237,4 +248,5 @@ const FeatureText = styled.div`
   display: flex;
   flex-direction: column;
   padding: 0 20px;
+
 `;
