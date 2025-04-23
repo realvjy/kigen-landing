@@ -17,7 +17,6 @@ import PresetSlide from './feature/PresetSlide';
 import MiscToken from './feature/MiscToken';
 
 
-const AnimatedLottie = dynamic(() => import("./feature/AnimatedLottie"), { ssr: false });
 
 export default function Features() {
 
