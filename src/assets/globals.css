@@ -11,7 +11,7 @@
   --radii-18: 18px;
   --radii-full: 999px;
   --white: #fff;
-
+  --block: #e5e7eb;
   --blue-grad: linear-gradient(90deg, #75DAFF 5.87%, #588FFC 37.44%, #935AFA 102.82%);
   --orange-grad: linear-gradient(90deg, #FFC062 0%, #FF6456 94.7%);
 
@@ -35,7 +35,7 @@
   --light-gray: #F2F3F5;
   --gray: rgba(0, 0, 0, 0.12);
   --dark-gray: var(--foreground);
-  --gray2: rgba(0, 0, 0, 0.6);
+  --gray2: rgba(0, 0, 0, 0.5);
   
   --shadow-border: 0px 0px 0px 1px inset rgba(0, 0, 0, 0.12);
 }
@@ -51,7 +51,7 @@ body {
   max-width: 100vw;
   overflow-x: hidden;
   scroll-behavior: auto !important;
-
+  letter-spacing: 0.1%;
 }
 
 
@@ -59,8 +59,8 @@ body {
   color: var(--foreground);
   background: var(--background);
   position: relative;
-  font-family: var(--font-hanken-grotesk);
-  font-feature-settings: "ss01" on;
+  font-family: var(--font-inter-display);
+  font-feature-settings: 'ss01' on, 'cv11' on, 'cv12' on, 'cv13' on, 'cv06' on, 'cv05' on;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   min-height: 100vh;
@@ -116,7 +116,7 @@ a {
 
 
 .test-stylistic {
-  font-family: var(--font-hanken-grotesk);
+  font-family: var(--font-inter-display);
   font-feature-settings: "ss01" on;
   font-size: 2rem;
 }

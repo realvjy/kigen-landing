@@ -97,7 +97,7 @@ export const AnimatedPath: React.FC<AnimatedPathProps> = ({
         <path
             d={pathData}
             stroke={isAnimating ? `url(#gradient-pulse-${id})` : "black"}
-            strokeWidth={isAnimating ? "3" : "1"}
+            strokeWidth={isAnimating ? "2" : "1"}
             strokeOpacity={isAnimating ? "1" : "0.3"}
             fill="none"
             strokeLinecap="round"

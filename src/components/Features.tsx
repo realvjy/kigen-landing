@@ -41,36 +41,38 @@ export default function Features() {
 
   const features = [
     {
-      title: "Color tokens",
-      description: "A collection of primitive color palettes sourced from popular design systems like Material, Fluent, and Polaris—ready to use and extend for your brand.",
-      component: <ColorToken />
+      title: "Color Palette",
+      description: "A collection of primitive color palettes sourced from popular design systems like Material, Fluent, Tailwind, Polaris, and more — ready to use and extend for your brand.",
+      component: < ColorToken />
     },
     {
-      title: "Semantic/Alias tokens",
-      description: "A pre-configured typography system with properly configured variables, seamlessly bound to text styles and ready for customization to match your brand.",
-      component: <SemanticColor />
+      title: "Predefined Variables",
+      description: "Start fast with a ready-to-use variable set built on best practices — easily customizable, so you never have to worry about how to begin.",
+      component: < PresetSlide />
+
+    },
+
+    {
+      title: "Semantic/Alias",
+      description: "A ready-to-use set of semantics and aliases mapped to colors for Success, Error, Warning, and more — designed for accessible and consistent UI communication.",
+      component: < SemanticColor />
     },
     {
-      title: "Typography tokens",
-      description: "Consistent spacing scales that help maintain rhythm in your designs across all platforms.",
+      title: "Typography",
+      description: "Tokenized font sizes, weights, and line heights ensure scalable and consistent text styling across your product.",
       component: <TypographyToken />
     },
     {
-      title: "Size & Misc Tokens",
-      description: "Elevation systems with ready-to-use shadow values for creating depth in your interfaces.",
+      title: "Size & Misc Variables",
+      description: "Standardized spacing scale and size variables for padding, margins, and layout dimensions—fully bind with variables.",
       component: <MiscToken />
     },
     {
       title: "Documentation",
-      description: "Comprehensive set of border radius values to maintain consistent component styling.",
+      description: "Easily generate and print all necessary token details for review, sharing, or developer handoff. Best to document all tokens & style.",
       component: <Documentation />
     },
-    {
-      title: "Presets options",
-      description: "Export your design tokens to various formats including CSS, SCSS, JSON, and more.",
-      component: <PresetSlide />
 
-    }
   ]
   return (
     <Section id="features">
@@ -97,9 +99,9 @@ export default function Features() {
                       {/* <img src={feature.image} alt={feature.title} /> */}
                     </FeatureImage>
                   )}
+                  <h3>{feature.title}</h3>
                 </FeatureContent>
                 <FeatureText>
-                  <h3>{feature.title}</h3>
                   <p>{feature.description}</p>
                 </FeatureText>
               </FeatureCard>
@@ -186,7 +188,7 @@ const Title = styled.h2`
 const FeatureGrid = styled.div`
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 16px;
+  gap: 20px;
   margin-top: 20px;
   @media (max-width: 768px) {
     grid-template-columns: repeat(2, 1fr);
@@ -205,15 +207,26 @@ const FeatureImage = styled.div`
   width: 100%;
   img {
     max-width: 100%;
-    min-height: 280px;
+    min-height: 250px;
   }
 `
 
 const FeatureContent = styled.div`
-  min-height: 280px;
+  height: 260px;
   width: 100%;
   display: flex;
   justify-content: center;
+  position: relative;
+  flex-direction: column;
+  h3 {
+    font-size: 20px;
+    font-weight: 450;
+    margin-bottom: 0.5rem;
+    position: absolute;
+    bottom: 0;
+    left: 20px;
+    z-index: 1;
+  }
 `;
 
 const FeatureCard = styled.div`
@@ -228,14 +241,13 @@ const FeatureCard = styled.div`
   flex-direction: column;
   overflow: hidden;
   h3 {
-    font-size: 22px;
+    font-size: 20px;
     font-weight: 450;
-    letter-spacing: -0.4px;
     margin-bottom: 0.5rem;
   }
 
   p {
-    font-size: 14px;
+    font-size: 15px;
     line-height: 20px;
     color: var(--gray2);
     flex-grow: 1; 
@@ -247,5 +259,5 @@ const FeatureText = styled.div`
   display: flex;
   flex-direction: column;
   padding: 0 20px;
-
+  z-index: 1;
 `;

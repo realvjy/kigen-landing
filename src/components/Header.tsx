@@ -111,18 +111,18 @@ const Content = styled.div`
         font-size: 48px;
         font-weight: 400;
         line-height: 110%;
-        letter-spacing: -2px;
+        letter-spacing: -1px;
         @media (max-width: 700px) {
-        font-size: 44px;
+            font-size: 44px;
         }
     }
 
   p{
     font-size: 18px;
     color: var(--gray2);
-    font-weight: 300;
+    font-weight: 400;
     max-width: 500px;
-    letter-spacing: -0.4px;
+    letter-spacing: -0.1px;
     @media (max-width: 700px) {
         font-size: 16px;
     }
@@ -141,12 +141,13 @@ const ScreenUI = styled.div`
     max-width: 1200px;
     display: flex;
     flex-direction: column;
-    background-color: rgba(40,40,40,0.2);
+    /* background-color: rgba(40,40,40,0.2); */
+   
     backdrop-filter: blur(20px);
     margin: 0 auto;
     position: relative;
     --border-width: 1px;
-    --border-radius: 12px;
+    --border-radius: 16px;
     z-index: 1;
     position: relative;
     border-radius: var(--border-radius);
@@ -158,9 +159,13 @@ const ScreenUI = styled.div`
         position: absolute;
         inset: 0;
         padding: var(--border-width);
-        border-radius: var(--border-radius);
+        border-radius: calc(var(--border-radius) + 2px);
+        background-color: rgba(40,40,40,0.2);
         /* background: linear-gradient(90deg, #A142FF 0%, #42D0FF 20.67%, #42A1FF 44.71%, #A1FF42 75%, #FF4242 100%); */
-        background-color: rgba(40,40,40,0.02);
+        background-size: 400% 100%;
+        background-position: 0% 50%;
+        /* animation: glowSlide 6s linear infinite; */
+
         -webkit-mask: 
             linear-gradient(#fff 0 0) content-box,
             linear-gradient(#fff 0 0);
@@ -169,6 +174,14 @@ const ScreenUI = styled.div`
         pointer-events: none;
     }
     
+    @keyframes glowSlide {
+    0% {
+      background-position: 0% 50%;
+    }
+    100% {
+      background-position: 400% 50%;
+    }
+  }
     .blur-bottom{
         height: 500px;
         background: linear-gradient(180deg, rgba(250, 250, 250, 0) 0%, #FAFAFA 100%);

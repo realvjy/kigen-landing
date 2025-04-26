@@ -17,29 +17,22 @@ export default function FAQ() {
 
   const FAQData = [
     {
-      question: "Color tokens",
-      description: "A collection of base color palettes sourced from popular design systems like Material, Fluent, and Polaris—ready to use and extend for your brand.",
+      question: "What is Kigen?",
+      description: "Kigen is a plugin for Figma that helps you create design variables and styles quickly. The word Kigen is japanese for 'to generate','origin' or 'to create'.",
     },
     {
-      question: "Typography tokens",
-      description: "Pre-configured typography scales based on popular design systems, ready to customize for your brand.",
+      question: "What is Variable/Token?",
+      description: "In Figma, a variable is a value that can be reused throughout your design system. It can be a color, a font, a size, or any other value that you want to use consistently across your design system. We also called it Tokens in our design system.",
     },
     {
-      question: "Spacing tokens",
-      description: "Consistent spacing scales that help maintain rhythm in your designs across all platforms.",
+      question: "How to use this plugin",
+      description: "UI is pretty intuitive, you can use it by following the instructions in the plugin. You can check these demo shared.",
     },
     {
-      question: "Shadow tokens",
-      description: "Elevation systems with ready-to-use shadow values for creating depth in your interfaces.",
-    },
-    {
-      question: "Border radius tokens",
-      description: "Comprehensive set of border radius values to maintain consistent component styling.",
-    },
-    {
-      question: "Export options",
-      description: "Export your design tokens to various formats including CSS, SCSS, JSON, and more.",
+      question: "What's license for it",
+      description: "It's free to use for personal and commercial use.",
     }
+
   ]
   return (
     <Section id="faq">
