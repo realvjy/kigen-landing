@@ -212,7 +212,7 @@ const FeatureImage = styled.div`
 `
 
 const FeatureContent = styled.div`
-  height: 260px;
+  height: 270px;
   width: 100%;
   display: flex;
   justify-content: center;
@@ -249,6 +249,7 @@ const FeatureCard = styled.div`
   p {
     font-size: 15px;
     line-height: 20px;
+    letter-spacing: 0.1px;
     color: var(--gray2);
     flex-grow: 1; 
     margin-bottom: 20px;

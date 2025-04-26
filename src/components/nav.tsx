@@ -21,7 +21,7 @@ export default function Nav() {
           <Right>
             <Links>
               <LinkScroll href="#features">Features</LinkScroll>
-              <LinkScroll href="#pricing">Pricing</LinkScroll>
+              <a href="https://s.vjy.me/project-ds">Install</a>
               <LinkScroll href="#faq">faq</LinkScroll>
             </Links>
           </Right>
@@ -76,6 +76,15 @@ const Right = styled.div`
 const Links = styled.div`
   display: flex;
   gap: 16px;
+
+  a{
+    text-decoration: none;
+    letter-spacing: 0.2px;
+    color: var(--foreground);
+    &:hover {
+      opacity: 1;
+    }
+  }
 `
 const Logo = styled.div`
   display: flex;

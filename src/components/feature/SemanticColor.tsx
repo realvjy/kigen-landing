@@ -205,6 +205,8 @@ const FeaturBox = styled.div`
   flex-direction: column;
   width: 100%;
   height: 100%;
+  mask-image: linear-gradient(to bottom, rgba(0,0,0,1) 30%, rgba(0,0,0,0) 100%);
+  -webkit-mask-image: linear-gradient(to bottom, rgba(0,0,0,1) 30%, rgba(0,0,0,0) 100%);
 
 `
 
@@ -275,8 +277,8 @@ const PillWrap = styled.div`
   left: 0;
   width: 100%;
   height: 100%;
-  mask-image: linear-gradient(to bottom, rgba(0,0,0,1) 30%, rgba(0,0,0,0) 100%);
-  -webkit-mask-image: linear-gradient(to bottom, rgba(0,0,0,1) 30%, rgba(0,0,0,0) 100%);
+  z-index: 4;
+  
   .pill{
     background: var(--white);
     box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.04), 0px 0px 0px 1px inset rgba(0, 0, 0, 0.08);

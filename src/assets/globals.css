@@ -108,6 +108,18 @@ a {
   text-decoration: none;
 }
 
+p{
+  font-size: 18px;
+  color: var(--gray2);
+  font-weight: 400;
+  max-width: 500px;
+  line-height: 120%;
+  letter-spacing: -0.1px;
+  @media (max-width: 700px) {
+      font-size: 16px;
+  }
+}
+
 @media (prefers-color-scheme: dark) {
   html {
     color-scheme: dark;

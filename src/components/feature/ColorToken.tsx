@@ -610,7 +610,7 @@ const UIFrame = styled.div`
   border-radius: 12px;
   background-clip: border-box;
   background: linear-gradient(180deg, #F2F3F5 0%, #FFFFFF 16%);
-  box-shadow: 0px -1px 2px rgba(0, 0, 0, 0.06), 0px 0px 0px 1px inset rgba(0, 0, 0, 0.08);
+  box-shadow: 0px -1px 2px rgba(0, 0, 0, 0.06), 0px 0px 0px 1px inset rgba(0, 0, 0, 0.06);
   .top{
     display: flex;
     flex-direction: row;
