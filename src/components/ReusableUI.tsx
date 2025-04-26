@@ -11,29 +11,29 @@ const StyledContainer = styled.div<{ maxWidth?: string; padding?: string }>`
 `;
 
 interface ContainerProps {
-    maxWidth?: string;
-    padding?: string;
-    className?: string;
-    children: React.ReactNode;
+  maxWidth?: string;
+  padding?: string;
+  className?: string;
+  children: React.ReactNode;
 }
 
 export const Container: React.FC<ContainerProps> = ({ maxWidth, padding, children, className }) => {
-    return (
-        <StyledContainer maxWidth={maxWidth} padding={padding} className={className}>
-            {children}
-        </StyledContainer>
-    )
+  return (
+    <StyledContainer maxWidth={maxWidth} padding={padding} className={className}>
+      {children}
+    </StyledContainer>
+  )
 }
 
 export const Gradient = styled.span<{ $variant?: 'blue' | 'orange' | 'green' }>`
   background: ${({ $variant }) => {
-        switch ($variant) {
-            case 'blue':
-                return 'var(--blue-grad)';
-            case 'orange':
-                return 'var(--orange-grad)';
-            default:
-                return `linear-gradient(
+    switch ($variant) {
+      case 'blue':
+        return 'var(--blue-grad)';
+      case 'orange':
+        return 'var(--orange-grad)';
+      default:
+        return `linear-gradient(
           90deg,
           #A142FF 0%,
           #42D0FF 20.67%,
@@ -41,8 +41,8 @@ export const Gradient = styled.span<{ $variant?: 'blue' | 'orange' | 'green' }>`
           #A1FF42 75%,
           #FF4242 100%
         )`;
-        }
-    }};
+    }
+  }};
   
   background-clip: text;
   -webkit-background-clip: text;
@@ -99,13 +99,13 @@ export const Wrapper = styled.div`
 
 // Add this component
 export const LinkScroll = ({ href, children }: { href: string; children: React.ReactNode }) => {
-    const handleClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
-        e.preventDefault();
-        const target = document.querySelector(href);
-        target?.scrollIntoView({ behavior: 'smooth' });
-    };
+  const handleClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
+    e.preventDefault();
+    const target = document.querySelector(href);
+    target?.scrollIntoView({ behavior: 'smooth' });
+  };
 
-    return <a href={href} onClick={handleClick}>{children}</a>;
+  return <a href={href} onClick={handleClick}>{children}</a>;
 };
 
 
@@ -118,8 +118,8 @@ export const AnimatedButtonGlobalStyle = createGlobalStyle`
 `;
 
 type AnimatedConicButtonProps = {
-    children: ReactNode;
-    href?: string;
+  children: ReactNode;
+  href?: string;
 } & ButtonHTMLAttributes<HTMLButtonElement> & React.AnchorHTMLAttributes<HTMLAnchorElement>;
 
 const Glow = styled.div`
@@ -214,16 +214,16 @@ const ConicButtonWrapper = styled.div`
 `;
 
 export const AnimatedConicButton = ({ children, href, ...props }: AnimatedConicButtonProps) => (
-    <ConicButtonWrapper>
-        <Glow />
-        {href ? (
-            <ConicButton as="a" href={href} {...props}>
-                {children}
-            </ConicButton>
-        ) : (
-            <ConicButton {...props}>
-                {children}
-            </ConicButton>
-        )}
-    </ConicButtonWrapper>
+  <ConicButtonWrapper>
+    <Glow />
+    {href ? (
+      <ConicButton as="a" href={href} {...props}>
+        {children}
+      </ConicButton>
+    ) : (
+      <ConicButton {...props}>
+        {children}
+      </ConicButton>
+    )}
+  </ConicButtonWrapper>
 );

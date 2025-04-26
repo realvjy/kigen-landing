@@ -111,7 +111,7 @@ const Content = styled.div`
         font-size: 48px;
         font-weight: 400;
         line-height: 110%;
-        letter-spacing: -1px;
+        letter-spacing: -0.5px;
         @media (max-width: 700px) {
             font-size: 44px;
         }

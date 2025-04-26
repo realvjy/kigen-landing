@@ -30,7 +30,7 @@ export default function FAQ() {
     },
     {
       question: "What's license for it",
-      description: "It's free to use for personal and commercial use.",
+      description: "Current version is free to use for personal and commercial use. However, we reserve the right to change the license terms in the future.",
     }
 
   ]
