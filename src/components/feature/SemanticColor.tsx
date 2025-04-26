@@ -5,7 +5,7 @@ import * as React from 'react';
 import styled from 'styled-components'
 import Link from "next/link";
 import { AnimatedPathGradientDef, AnimatedPath, Direction } from "../AnimatedPath";
-
+import { AnimatePresence, motion, useAnimation } from 'framer-motion';
 
 
 export default function TypographyToken() {
@@ -19,35 +19,38 @@ export default function TypographyToken() {
       d: 'M168 167C168 183.566 180 181.135 225.5 181.135C277.5 181.135 293 178.562 293 202',
       direction: 'right' as Direction,
       duration: 5,
-      gradientColor: '#000',
+      gradientColor: '#FF24BD',
     },
     {
       id: 'anim2',
       d: 'M152 114C152 63.0297 71 111.167 71 70',
       direction: 'left' as Direction,
       duration: 6,
-      gradientColor: '#000',
+      gradientColor: '#FF24BD',
     },
     {
       id: 'anim3',
       d: 'M272.402 141.5C297 141.5 310.25 140.5 310.25 115',
       direction: 'right' as Direction,
       duration: 8,
-      gradientColor: '#000',
+      gradientColor: '#FF24BD',
     },
     {
       id: 'anim4',
       d: 'M210 114C210 59.5 290 112.054 290 57',
       direction: 'left' as Direction,
       duration: 8,
-      gradientColor: '#000',
+      gradientColor: '#FF24BD',
     },
   ];
 
   return (
     <FeaturBox>
-      <div className="flex flex-col items-center space-y-4 w-full">
-        <div className="h-auto w-full bg-gray-50 rounded p-4">
+      <Wrapper>
+        <GridWrap>
+          <img src="/grid.svg" alt="grid" />
+        </GridWrap>
+        <SVGWrap>
           <svg width="350" height="230" viewBox="0 0 350 230" fill="none" xmlns="http://www.w3.org/2000/svg">
             {/* Definitions must be FIRST */}
             <defs>
@@ -136,10 +139,63 @@ export default function TypographyToken() {
               <rect x="235" y="130" width="24" height="24" rx="6" fill="#14AE5C" />
             </g>
           </svg>
-        </div>
+        </SVGWrap>
+        <PillWrap>
+          <motion.div
+            className="pill text"
+            animate={{ x: [0, -4, 4, -4, 4, 0] }}
+            transition={{
+              duration: 10.5,
+              repeat: Infinity,
+              repeatType: "loop",
+              ease: [0.5, 0, 0, 1],
+              delay: 0
+            }}
+          >
+            <span className="color red" />text-accent
+          </motion.div>
+          <motion.div
+            className="pill bg"
+            animate={{ x: [0, -4, 4, -4, 4, 0] }}
+            transition={{
+              duration: 8.5,
+              repeat: Infinity,
+              repeatType: "loop",
+              ease: [0.5, 0, 0, 1],
+              delay: 1.5
+            }}
+          >
+            <span className="color blue" />bg-primary
+          </motion.div>
+          <motion.div
+            className="pill icon"
+            animate={{ x: [0, -4, 4, -4, 4, 0] }}
+            transition={{
+              duration: 12.5,
+              repeat: Infinity,
+              repeatType: "loop",
+              ease: [0.5, 0, 0, 1],
+              delay: 1
+            }}
+          >
+            <span className="color green" />icon-accent
+          </motion.div>
+          <motion.div
+            className="pill border"
+            animate={{ x: [0, -4, 4, -4, 4, 0] }}
+            transition={{
+              duration: 14,
+              repeat: Infinity,
+              repeatType: "loop",
+              ease: [0.5, 0, 0, 1],
+              delay: 2.5
+            }}
+          >
+            <span className="color red" />border-primary
+          </motion.div>
+        </PillWrap>
 
-
-      </div>
+      </Wrapper>
     </FeaturBox>
   )
 }
@@ -147,19 +203,20 @@ export default function TypographyToken() {
 const FeaturBox = styled.div`
   display: flex;
   flex-direction: column;
+  width: 100%;
+  height: 100%;
 
 `
 
 const Wrapper = styled.div`
+  position: relative;
+  background: linear-gradient(180deg, var(--gray-grad-1) 0%, var(--white) 80%);
   display: flex;
   justify-content: center;
-  margin-top: 30px;
-  padding: 40px 0;
   font-size: 16px;
-  letter-spacing: -0.2px;
   font-weight: 500;
+  height: 100%;
   width: 100%;
-
   color: var(--foreground);
   gap: 4px;
   align-items: center;
@@ -183,4 +240,94 @@ const Wrapper = styled.div`
   }
 `;
 
+const GridWrap = styled.div`
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0.04;
+  mask-image: radial-gradient(
+    ellipse 60% 40% at 50% 40%,
+    rgba(0,0,0,1) 10%,        
+    rgba(0,0,0,0) 60%         
+  );
+  -webkit-mask-image: radial-gradient(
+    ellipse 60% 40% at 50% 40%,
+    rgba(0,0,0,1) 10%,        
+    rgba(0,0,0,0) 60%         
+  );
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+`;
 
+
+const SVGWrap = styled.div`
+  display: flex;
+  flex-direction: column;
+`
+const PillWrap = styled.div`
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  mask-image: linear-gradient(to bottom, rgba(0,0,0,1) 30%, rgba(0,0,0,0) 100%);
+  -webkit-mask-image: linear-gradient(to bottom, rgba(0,0,0,1) 30%, rgba(0,0,0,0) 100%);
+  .pill{
+    background: var(--white);
+    box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.04), 0px 0px 0px 1px inset rgba(0, 0, 0, 0.08);
+    display: inline-flex;
+    position: absolute;
+    align-items: center;
+    justify-content: center;
+    font-family: var(--jetBrainsMono), monospace;
+    font-weight: 600;
+    font-size: 12px;
+    line-height: 12px;
+    gap: 4px;
+    padding: 6px 12px 6px 8px;
+    border-radius: 18px;
+    color: var(--gray2);
+    &.text{
+      position: absolute;
+      top: 64px;
+      left: 20px;
+    }
+    &.bg{
+      position: absolute;
+      top: 48px;
+      right: 18px;
+    }
+    &.icon{
+      position: absolute;
+      top: 112px;
+      right: -32px;
+    }
+    &.border{
+      position: absolute;
+      top: 220px;
+      right: -10px;
+    }
+    .color{
+      height: 20px;
+      width: 20px;
+      border-radius: 50%;
+    }
+    .red{
+      background-color: #FF5C16;
+    }
+    .pink{
+      background-color: pink;
+    }
+    .blue{
+      background-color: #C1C0FF;
+    }
+    .green{
+      background-color: #00853e;
+    }
+  }
+`

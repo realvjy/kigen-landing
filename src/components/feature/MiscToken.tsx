@@ -1,150 +1,174 @@
 import React, { useEffect, useState } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { useMotionValue, useTransform, motion, animate, easeInOut } from "framer-motion";
 import styled from 'styled-components';
 
+interface UICardProps { }
+
+const UICard: React.FC<UICardProps> = () => (
+  <UICardWrap>
+    <UIFrame>
+      <div className="top">
+        <div className="left-dots">
+          <div className="win-btn"></div>
+          <div className="win-btn"></div>
+          <div className="win-btn"></div>
+        </div>
+      </div>
+      <ContentContainer>
+        <ContentLine style={{ width: "75%" }} />
+        <ContentLine style={{ width: "100%" }} />
+        <ContentLine style={{ width: "66%" }} />
+      </ContentContainer>
+    </UIFrame>
+  </UICardWrap>
+);
+
+const UICardWrap = styled(motion.div)`
+  width: 180px;
+  min-height: 180px;
+  background: var(--white);
+  border-radius: 14px;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  justify-content: flex-start;
+  position: relative;
+`;
+
+const UIFrame = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  justify-content: flex-start;
+  flex: initial;
+  gap: 0;
+  width: 100%;
+  height: 180px;
+  border-radius: 12px;
+  background-clip: border-box;
+  background: linear-gradient(180deg, #F2F3F5 0%, #FFFFFF 16%);
+  box-shadow: 0px -1px 2px rgba(0, 0, 0, 0.06), 0px 0px 0px 1px inset rgba(0, 0, 0, 0.08);
+  .top{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-start;
+    flex: initial;
+    padding: 8px 16px;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.04);
+    gap: 0;
+  }
+  .left-dots{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-start;
+    flex: initial;
+    margin-top: 4px;
+    gap: 4px;
+  }
+  .win-btn{
+    height: 6px;
+    width: 6px;
+    border-radius: 100%;
+    display: inline-block;
+    &:first-child{
+      background-color: #FF24BD;
+    }
+    &:nth-child(2){
+      background-color: #feb119;
+    }
+    &:last-child{
+      background-color: #3dd852;
+    }
+  }
+`;
+
+const ContentContainer = styled.div`
+  padding: 16px;
+`;
+
+const ContentLine = styled.div`
+  height: 8px;
+  background: #e5e7eb;
+  border-radius: 3px;
+  margin-bottom: 10px;
+  opacity: 0.6;
+`;
+
 export default function MiscToken() {
-    const [animationKey, setAnimationKey] = useState(0);
+  const [minGap] = useState(60);
+  const [maxGap] = useState(80);
+  const CARD_WIDTH = 160;
+  const HALF_CARD = CARD_WIDTH / 2;
 
-    // Restart animation every 5 seconds
-    useEffect(() => {
-        const interval = setInterval(() => {
-            setAnimationKey(prev => prev + 1);
-        }, 5000);
+  const progress = useMotionValue(0);
 
-        return () => clearInterval(interval);
-    }, []);
+  useEffect(() => {
+    const controls = animate(progress, 1, {
+      duration: 3.6,
+      repeat: Infinity,
+      repeatType: "loop",
+      ease: [0.5, 0, 0, 1]
+    });
+    return controls.stop;
+  }, [progress]);
 
-    return (
-        <FeaturBox>
-            <Container>
-                <LayoutContainer>
-                    {/* Left box */}
-                    <LeftBox
-                        key={`left-${animationKey}`}
-                        initial={{ x: 0 }}
-                        animate={{
-                            x: [0, 40, 0],
-                        }}
-                        transition={{
-                            duration: 4,
-                            times: [0, 0.5, 1],
-                            ease: "easeInOut"
-                        }}
-                    >
-                        {/* Content lines */}
-                        <ContentContainer>
-                            <ContentLine style={{ width: '75%' }} />
-                            <ContentLine style={{ width: '100%' }} />
-                            <ContentLine style={{ width: '66%' }} />
-                        </ContentContainer>
-                    </LeftBox>
+  const gap = useTransform(progress, [0, 0.5, 1], [maxGap, minGap, maxGap]);
+  const halfGap = useTransform(gap, (g) => g / 2);
+  const leftX = useTransform(halfGap, (hg) => -HALF_CARD - hg);
+  const rightX = useTransform(halfGap, (hg) => HALF_CARD + hg);
 
-                    {/* Right box */}
-                    <RightBox
-                        key={`right-${animationKey}`}
-                        initial={{ x: 0 }}
-                        animate={{
-                            x: [0, -40, 0]
-                        }}
-                        transition={{
-                            duration: 4,
-                            times: [0, 0.5, 1],
-                            ease: "easeInOut"
-                        }}
-                    >
-                        {/* Window controls */}
-                        <WindowControls>
-                            <RedButton />
-                            <YellowButton />
-                            <GreenButton />
-                        </WindowControls>
+  const gapStart = useTransform(leftX, (lx) => Number(lx) + CARD_WIDTH);
+  const gapEnd = rightX;
+  const lineWidth = useTransform([gapStart, gapEnd], ([start, end]) => Math.max(0, Number(end) - Number(start)) - 40);
+  const lineCenter = 0;
+  return (
+    <FeaturBox>
+      <Wrapper>
+        <GridWrap>
+          <img src="/grid.svg" alt="grid" />
+        </GridWrap>
+        <LayoutContainer>
+          <SlideArea>
+            <motion.div
+              style={{
+                x: leftX,
+                position: "absolute",
+                left: "50%",
+                top: "50%",
+                translateX: "-50%",
+                translateY: "-50%"
+              }}
+            >
+              <UICard />
+            </motion.div>
 
-                        {/* Content lines */}
-                        <ContentContainer>
-                            <ContentLine style={{ width: '75%' }} />
-                            <ContentLine style={{ width: '100%' }} />
-                            <ContentLine style={{ width: '66%' }} />
-                        </ContentContainer>
-                    </RightBox>
+            <motion.div
+              style={{
+                x: rightX,
+                position: "absolute",
+                left: "50%",
+                top: "50%",
+                translateX: "-50%",
+                translateY: "-50%"
+              }}
+            >
+              <UICard />
+            </motion.div>
+          </SlideArea>
 
-                    {/* Curved pink measurement line - top */}
-                    <CurvedSvg
-                        key={`curve-${animationKey}`}
-                        width="140"
-                        height="60"
-                        viewBox="0 0 140 60"
-                        initial={{ opacity: 0 }}
-                        animate={{
-                            opacity: [0, 1, 1, 0],
-                        }}
-                        transition={{
-                            duration: 4,
-                            times: [0, 0.2, 0.8, 1]
-                        }}
-                    >
-                        <motion.path
-                            d="M0,60 Q70,10 140,60"
-                            fill="transparent"
-                            stroke="#EC4899"
-                            strokeWidth="2"
-                            initial={{ pathLength: 0 }}
-                            animate={{ pathLength: [0, 1, 1, 0] }}
-                            transition={{
-                                duration: 4,
-                                times: [0, 0.3, 0.7, 1]
-                            }}
-                        />
-                        <motion.line
-                            x1="0"
-                            y1="60"
-                            x2="0"
-                            y2="40"
-                            stroke="#EC4899"
-                            strokeWidth="2"
-                            initial={{ pathLength: 0 }}
-                            animate={{ pathLength: [0, 1, 1, 0] }}
-                            transition={{
-                                duration: 4,
-                                times: [0, 0.3, 0.7, 1]
-                            }}
-                        />
-                        <motion.line
-                            x1="140"
-                            y1="60"
-                            x2="140"
-                            y2="40"
-                            stroke="#EC4899"
-                            strokeWidth="2"
-                            initial={{ pathLength: 0 }}
-                            animate={{ pathLength: [0, 1, 1, 0] }}
-                            transition={{
-                                duration: 4,
-                                times: [0, 0.3, 0.7, 1]
-                            }}
-                        />
-                    </CurvedSvg>
-
-                    {/* Horizontal pink measurement line - middle */}
-                    <HorizontalMeasure
-                        key={`horizontal-${animationKey}`}
-                        initial={{ width: 140 }}
-                        animate={{
-                            width: [140, 60, 140]
-                        }}
-                        transition={{
-                            duration: 4,
-                            times: [0, 0.5, 1],
-                            ease: "easeInOut"
-                        }}
-                    >
-                        <HorizontalLine />
-                        <LeftMark />
-                        <RightMark />
-                    </HorizontalMeasure>
-                </LayoutContainer>
-            </Container>
-        </FeaturBox>
-    );
+          <HorizontalMeasure style={{ x: lineCenter }}>
+            <LineContainer>
+              <MotionHorizontalLine style={{ width: lineWidth }} />
+              <LeftMark />
+              <RightMark />
+            </LineContainer>
+          </HorizontalMeasure>
+        </LayoutContainer>
+      </Wrapper>
+    </FeaturBox>
+  );
 };
 
 const FeaturBox = styled.div`
@@ -152,106 +176,95 @@ const FeaturBox = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  height: 280px;
+  height: 100%;
   width: 100%;
   max-width: 100%;
   background: linear-gradient(180deg, var(--gray-grad-1) 0%, var(--white) 80%);
 `;
-// Styled Components
-const Container = styled.div`
-  height: 100vh;
+
+const Wrapper = styled.div`
+  position: relative;
+  background: linear-gradient(180deg, var(--gray-grad-1) 0%, var(--white) 80%);
   display: flex;
-  align-items: center;
   justify-content: center;
+  font-size: 16px;
+  letter-spacing: -0.2px;
+  font-weight: 500;
+  height: 100%;
+  width: 100%;
+  color: var(--foreground);
+  gap: 4px;
+  align-items: center;
+`;
+
+const GridWrap = styled.div`
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0.04;
+  mask-image: radial-gradient(
+    ellipse 60% 40% at 50% 40%,
+    rgba(0,0,0,1) 10%,        
+    rgba(0,0,0,0) 60%         
+  );
+  -webkit-mask-image: radial-gradient(
+    ellipse 60% 40% at 50% 40%,
+    rgba(0,0,0,1) 10%,        
+    rgba(0,0,0,0) 60%         
+  );
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
 `;
 
 const LayoutContainer = styled.div`
+  display: flex;
+  flex-direction: row; 
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  position: relative;
+  mask-image: linear-gradient(to bottom, rgba(0,0,0,1) 30%, rgba(0,0,0,0) 90%);
+  -webkit-mask-image: linear-gradient(to bottom, rgba(0,0,0,1) 30%, rgba(0,0,0,0) 90%);
+`;
+
+const SlideArea = styled.div`
   position: relative;
   width: 100%;
-  max-width: 32rem;
-  height: 200px;
-`;
-
-const Box = styled(motion.div)`
-  position: absolute;
-  top: 0;
-  width: 18rem;
-  height: 100%;
-  background-color: white;
-  border-radius: 1.5rem;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
-`;
-
-const LeftBox = styled(Box)`
-  left: 0;
-`;
-
-const RightBox = styled(Box)`
-  right: 0;
-`;
-
-const ContentLine = styled.div`
-  height: 0.5rem;
-  background-color: #f3f4f6;
-  border-radius: 9999px;
-  margin-bottom: 1rem;
-`;
-
-const WindowControls = styled.div`
-  position: absolute;
-  top: 2rem;
-  left: 1.5rem;
-  display: flex;
-`;
-
-const WindowButton = styled.div`
-  width: 0.75rem;
-  height: 0.75rem;
-  border-radius: 9999px;
-  margin-right: 0.5rem;
-`;
-
-const RedButton = styled(WindowButton)`
-  background-color: #f87171;
-`;
-
-const YellowButton = styled(WindowButton)`
-  background-color: #fbbf24;
-`;
-
-const GreenButton = styled(WindowButton)`
-  background-color: #4ade80;
-`;
-
-const ContentContainer = styled.div`
-  padding: 1.5rem;
-  padding-top: 4rem;
-`;
-
-const CurvedSvg = styled(motion.svg)`
-  position: absolute;
-  top: 0;
-  left: 50%;
-  transform: translateX(-50%);
+  margin: 32px 0;
+  
 `;
 
 const HorizontalMeasure = styled(motion.div)`
   position: absolute;
-  left: 50%;
-  top: 50%;
+  top: 140px;
   transform: translate(-50%, -50%);
 `;
 
-const HorizontalLine = styled.div`
+const LineContainer = styled.div`
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: -10px;
+`;
+
+const MotionHorizontalLine = styled(motion.div)`
   height: 0.125rem;
   background-color: #ec4899;
-  width: 100%;
+  border-radius: 1px;
+  margin: 0 auto;
 `;
 
 const VerticalMeasureMark = styled.div`
   position: absolute;
-  height: 1.5rem;
-  width: 0.125rem;
+  height: 16px;
+  width: 2px;
   background-color: #ec4899;
   top: 50%;
   transform: translateY(-50%);

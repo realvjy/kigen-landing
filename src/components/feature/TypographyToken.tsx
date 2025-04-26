@@ -5,6 +5,7 @@ import * as React from 'react';
 import styled from 'styled-components'
 import Link from "next/link";
 import { AnimatedPathGradientDef, AnimatedPath, Direction } from "../AnimatedPath";
+import { motion } from "framer-motion";
 
 const Abc = () => (
     <svg
@@ -89,9 +90,11 @@ export default function TypographyToken() {
 
     return (
         <FeaturBox>
-            <div className="flex flex-col items-center space-y-4 w-full">
-
-                <div className="h-auto w-full bg-gray-50 rounded p-4">
+            <Wrapper>
+                <GridWrap>
+                    <img src="/grid.svg" alt="grid" />
+                </GridWrap>
+                <SVGWrap >
                     <svg width="350" height="230" viewBox="0 0 350 230" fill="none" xmlns="http://www.w3.org/2000/svg">
                         {/* Definitions must be FIRST */}
                         <defs>
@@ -172,8 +175,63 @@ export default function TypographyToken() {
                     </svg>
 
                     <Abc />
-                </div>
-            </div>
+                </SVGWrap>
+                <PillWrap>
+                    <motion.div
+                        className="pill label"
+                        animate={{ x: [0, -4, 4, -4, 4, 0] }}
+                        transition={{
+                            duration: 10.5,
+                            repeat: Infinity,
+                            repeatType: "loop",
+                            ease: [0.5, 0, 0, 1],
+                            delay: 0
+                        }}
+                    >
+                        Label 1
+                    </motion.div>
+                    <motion.div
+                        className="pill heading"
+                        animate={{ x: [0, -4, 4, -4, 4, 0] }}
+                        transition={{
+                            duration: 8.5,
+                            repeat: Infinity,
+                            repeatType: "loop",
+                            ease: [0.5, 0, 0, 1],
+                            delay: 1.5
+                        }}
+                    >
+                        Heading XS
+                    </motion.div>
+                    <motion.div
+                        className="pill body"
+                        animate={{ x: [0, -4, 4, -4, 4, 0] }}
+                        transition={{
+                            duration: 8.5,
+                            repeat: Infinity,
+                            repeatType: "loop",
+                            ease: [0.5, 0, 0, 1],
+                            delay: 1.5
+                        }}
+                    >
+                        Body SM
+                    </motion.div>
+                    <motion.div
+                        className="pill tiny"
+                        animate={{ x: [0, -4, 4, -4, 4, 0] }}
+                        transition={{
+                            duration: 12.5,
+                            repeat: Infinity,
+                            repeatType: "loop",
+                            ease: [0.5, 0, 0, 1],
+                            delay: 1
+                        }}
+                    >
+                        Tiny Extended
+                    </motion.div>
+
+                </PillWrap>
+            </Wrapper>
         </FeaturBox>
     )
 }
@@ -181,7 +239,8 @@ export default function TypographyToken() {
 const FeaturBox = styled.div`
   display: flex;
   flex-direction: column;
-    position: relative;
+  width: 100%;
+  height: 100%;
 
     .abc{
         position: absolute;
@@ -190,17 +249,39 @@ const FeaturBox = styled.div`
         transform: translate(-50%, -50%);
     }
 `
+const GridWrap = styled.div`
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0.04;
+  mask-image: radial-gradient(
+    ellipse 60% 40% at 50% 40%,
+    rgba(0,0,0,1) 10%,        
+    rgba(0,0,0,0) 60%         
+  );
+  -webkit-mask-image: radial-gradient(
+    ellipse 60% 40% at 50% 40%,
+    rgba(0,0,0,1) 10%,        
+    rgba(0,0,0,0) 60%         
+  );
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+`;
 
 const Wrapper = styled.div`
+  position: relative;
+  background: linear-gradient(180deg, var(--gray-grad-1) 0%, var(--white) 80%);
   display: flex;
   justify-content: center;
-  margin-top: 30px;
-  padding: 40px 0;
   font-size: 16px;
-  letter-spacing: -0.2px;
   font-weight: 500;
+  height: 100%;
   width: 100%;
-
   color: var(--foreground);
   gap: 4px;
   align-items: center;
@@ -224,3 +305,70 @@ const Wrapper = styled.div`
   }
 `;
 
+const SVGWrap = styled.div`
+  display: flex;
+  flex-direction: column;
+`
+
+const PillWrap = styled.div`
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  mask-image: linear-gradient(to bottom, rgba(0,0,0,1) 30%, rgba(0,0,0,0) 100%);
+  -webkit-mask-image: linear-gradient(to bottom, rgba(0,0,0,1) 30%, rgba(0,0,0,0) 100%);
+  .pill{
+    background: var(--white);
+    box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.04), 0px 0px 0px 1px inset rgba(0, 0, 0, 0.08);
+    display: inline-flex;
+    position: absolute;
+    align-items: center;
+    justify-content: center;
+    font-family: var(--jetBrainsMono), monospace;
+    font-weight: 600;
+    font-size: 12px;
+    line-height: 12px;
+    gap: 4px;
+    padding: 8px 12px;
+    border-radius: 18px;
+    color: var(--gray2);
+    &.label{
+      position: absolute;
+      top: 44px;
+      left: 44px;
+    }
+    &.heading{
+      position: absolute;
+      top: 68px;
+      right: 24px;
+    }
+    &.body{
+      position: absolute;
+      top: 180px;
+      left: 90px;
+    }
+    &.tiny{
+      position: absolute;
+      top: 200px;
+      right: 68px;
+    }
+    .color{
+      height: 20px;
+      width: 20px;
+      border-radius: 50%;
+    }
+    .red{
+      background-color: #FF5C16;
+    }
+    .pink{
+      background-color: pink;
+    }
+    .blue{
+      background-color: #C1C0FF;
+    }
+    .green{
+      background-color: #00853e;
+    }
+  }
+`

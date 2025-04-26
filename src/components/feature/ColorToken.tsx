@@ -309,7 +309,7 @@ export default function ColorToken() {
                   }}
                 >
                   {isCenter && (
-                    <AnimatePresence mode="wait">
+                    <AnimatePresence>
                       <motion.svg
                         key={`circle-${centerSystem.name}`}
                         className="logo-border"
@@ -407,7 +407,7 @@ export default function ColorToken() {
                 </div>
               </div>
               <div className='bottom'>
-                <AnimatePresence mode="wait">
+                <AnimatePresence >
                   <motion.div
                     key={centerSystem.name}
                     initial="initial"
@@ -432,7 +432,6 @@ export default function ColorToken() {
               </div>
             </UIFrame>
           </UIWrapper>
-
         </MainContent>
       </Wrapper>
     </FeaturBox>
@@ -444,12 +443,12 @@ const FeaturBox = styled.div`
   flex-direction: column;
   width: 100%;
   height: 100%;
-
+  z-index: 0;
 `
 
 const Wrapper = styled.div`
   position: relative;
-  background: linear-gradient(180deg, var(--gray-grad-1) 0%, var(--white) 80%);
+  background: linear-gradient(180deg, var(--gray-grad-1) 0%, var(--white) 90%);
   display: flex;
   justify-content: center;
   font-size: 16px;
@@ -545,6 +544,8 @@ const MainContent = styled.div`
   width: 100%;
   position: relative;
   display: flex;
+  mask-image: linear-gradient(to bottom, rgba(0,0,0,1) 60%, rgba(0,0,0,0) 100%);
+  -webkit-mask-image: linear-gradient(to bottom, rgba(0,0,0,1) 60%, rgba(0,0,0,0) 100%);
   flex-direction: column;
   align-items: center;
 `;
@@ -590,9 +591,10 @@ const UIWrapper = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  mask-image: linear-gradient(to bottom, rgba(0,0,0,1) 30%, rgba(0,0,0,0) 100%);
-  -webkit-mask-image: linear-gradient(to bottom, rgba(0,0,0,1) 30%, rgba(0,0,0,0) 100%);
+
   transform: translateY(20px);
+
+  overflow: visible;
   z-index: 2;
 `;
 

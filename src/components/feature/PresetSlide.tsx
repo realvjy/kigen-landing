@@ -3,7 +3,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import styled from 'styled-components';
 /// Define prop types for the Amount component
 interface AmountProps {
-    isPositive: boolean;
+  isPositive: boolean;
 }
 
 const Amount = styled.div<AmountProps>`
@@ -13,171 +13,163 @@ const Amount = styled.div<AmountProps>`
 
 // Define Transaction item type
 interface TransactionItem {
-    id: number;
-    title: string;
-    category: string;
-    amount: number;
-    icon: string;
-    position?: string;
-    key?: string;
+  id: number;
+  title: string;
+  category: string;
+  color: string;
+  icon: string;
+  position?: string;
+  key?: string;
 }
 
-interface TransactionCardProps {
-    item: TransactionItem;
+interface SlideCardProps {
+  item: TransactionItem;
 }
 
 // Transaction Card Component
-const TransactionCard: React.FC<TransactionCardProps> = ({ item }) => {
-    const isPositive = item.amount > 0;
+const SlideCard: React.FC<SlideCardProps> = ({ item }) => {
+  const isPositive = item.color === '#10b981';
 
-    return (
-        <Card>
-            <LeftSection>
-                <IconContainer>{item.icon}</IconContainer>
-                <TextContainer>
-                    {/* Title block - width based on title length */}
-                    <TitleBlock
-                        initial={{ width: 0 }}
-                        animate={{ width: `${Math.min(item.title.length * 8, 120)}px` }}
-                        transition={{ duration: 0.3 }}
-                    />
-                    {/* Category block - smaller width */}
-                    <CategoryBlock
-                        initial={{ width: 0 }}
-                        animate={{ width: `${Math.min(item.category.length * 6, 80)}px` }}
-                        transition={{ duration: 0.3 }}
-                    />
-                </TextContainer>
-            </LeftSection>
-            {/* <Amount isPositive={isPositive}>
-                {isPositive ? '+' : '-'} ${Math.abs(item.amount).toFixed(2)}
-            </Amount> */}
-        </Card>
-    );
+  return (
+    <Card>
+      <LeftSection>
+        <IconContainer style={{ backgroundColor: item.color }}><img src={`/${item.icon}.svg`} alt={item.icon} /></IconContainer>
+        <TextContainer>
+          <TitleBlock
+            initial={{ width: 0 }}
+            animate={{ width: `${Math.min(item.title.length * 8, 150)}px` }}
+            transition={{ duration: 0.3 }}
+          />
+          <CategoryBlock
+            initial={{ width: 0 }}
+            animate={{ width: `${Math.min(item.category.length * 6, 80)}px` }}
+            transition={{ duration: 0.3 }}
+          />
+        </TextContainer>
+      </LeftSection>
+    </Card>
+  );
 };
 
 export default function PresetSlide() {
-    // Sample transaction data
-    const transactions = [
-        { id: 1, title: "Birthday gift", category: "Revenue", amount: 100.00, icon: "🎁" },
-        { id: 2, title: "Shoes", category: "Clothing", amount: -79.00, icon: "👟" },
-        { id: 3, title: "Movie theater", category: "Entertainment", amount: -16.00, icon: "🎬" },
-        { id: 4, title: "Salary", category: "Income", amount: 2450.00, icon: "💼" },
-        { id: 5, title: "Grocery store", category: "Food", amount: -123.45, icon: "🛒" },
-        { id: 6, title: "Gas station", category: "Transportation", amount: -45.00, icon: "⛽" },
-        { id: 7, title: "Restaurant", category: "Food", amount: -68.50, icon: "🍽️" },
-        { id: 8, title: "Investment return", category: "Revenue", amount: 210.00, icon: "📈" },
-    ];
-    const [isExiting, setIsExiting] = useState(false);
+  // Sample transaction data
+  const transactions = [
+    { id: 1, title: "Birthday gift", category: "Revenue", color: '#F7F7F7', icon: "text" },
+    { id: 2, title: "Shoes", category: "Clothing", color: '#FFEEF6', icon: "color" },
+    { id: 3, title: "Movie theater", category: "Entertainment", color: '#E4F3FF', icon: "radius" },
+    { id: 4, title: "Salary", category: "Income", color: '#FFF8F3', icon: "scale" },
+  ];
+  const [isExiting, setIsExiting] = useState(false);
 
-    const [currentIndex, setCurrentIndex] = useState(0);
-    const [displayedCards, setDisplayedCards] = useState<TransactionItem[]>([]);
+  const [currentIndex, setCurrentIndex] = useState(0);
+  const [displayedCards, setDisplayedCards] = useState<TransactionItem[]>([]);
 
-    useEffect(() => {
-        setDisplayedCards([
-            { ...transactions[0], position: "main", key: `main-0` },
-            { ...transactions[1], position: "next", key: `next-1` },
-            { ...transactions[2], position: "upcoming", key: `upcoming-2` }
-        ]);
+  useEffect(() => {
+    setDisplayedCards([
+      { ...transactions[0], position: "main", key: `main-0` },
+      { ...transactions[1], position: "next", key: `next-1` },
+      { ...transactions[2], position: "upcoming", key: `upcoming-2` }
+    ]);
 
-        const interval = setInterval(() => {
-            setIsExiting(true); // 1. Trigger exit
-            setTimeout(() => {
-                // 2. After exit animation, update cards and reset exit
-                setCurrentIndex(prevIndex => {
-                    const newIndex = (prevIndex + 1) % transactions.length;
-                    const nextIndex = (newIndex + 1) % transactions.length;
-                    const upcomingIndex = (newIndex + 2) % transactions.length;
+    const interval = setInterval(() => {
+      setIsExiting(true);
+      setTimeout(() => {
+        setCurrentIndex(prevIndex => {
+          const newIndex = (prevIndex + 1) % transactions.length;
+          const nextIndex = (newIndex + 1) % transactions.length;
+          const upcomingIndex = (newIndex + 2) % transactions.length;
 
-                    setDisplayedCards([
-                        { ...transactions[newIndex], position: "main", key: `main-${newIndex}` },
-                        { ...transactions[nextIndex], position: "next", key: `next-${nextIndex}` },
-                        { ...transactions[upcomingIndex], position: "upcoming", key: `upcoming-${upcomingIndex}` }
-                    ]);
+          setDisplayedCards([
+            { ...transactions[newIndex], position: "main", key: `main-${newIndex}` },
+            { ...transactions[nextIndex], position: "next", key: `next-${nextIndex}` },
+            { ...transactions[upcomingIndex], position: "upcoming", key: `upcoming-${upcomingIndex}` }
+          ]);
 
-                    return newIndex;
-                });
-                setIsExiting(false);
-            }, 700); // match your exit animation duration
-        }, 3000);
+          return newIndex;
+        });
+        setIsExiting(false);
+      }, 1200);
+    }, 3000);
 
-        return () => clearInterval(interval);
-    }, []);
+    return () => clearInterval(interval);
+  }, []);
 
-    // Card animation variants
-    const cardVariants = {
-        main: {
-            y: 0,
-            scale: 1,
-            opacity: 1,
-            zIndex: 3,
-            transition: { duration: 0.8, ease: [0.5, 0, 0, 1] }
-        },
-        next: {
-            y: 70,
-            scale: 0.95,
-            opacity: 0.8,
-            zIndex: 2,
-            transition: { duration: 0.7, ease: [0.5, 0, 0, 1] }
-        },
-        upcoming: {
-            y: 130,
-            scale: 0.9,
-            opacity: 0.6,
-            zIndex: 1,
-            transition: { duration: 0.7, ease: [0.5, 0, 0, 1] }
-        },
-        exit: {
-            y: -120,
-            opacity: 0,
-            transition: { duration: 0.7, ease: [0.5, 0, 0, 1] }
-        },
-        enter: {
-            y: 180,
-            scale: 0.85,
-            opacity: 0.4,
-            zIndex: 0,
-            transition: { duration: 0.6, ease: [0.5, 0, 0, 1] }
-        }
-    };
+  // Card animation variants
+  const cardVariants = {
+    main: {
+      y: 0,
+      scale: 1,
+      opacity: 1,
+      zIndex: 3,
+      transition: { duration: 1.2, ease: [0.5, 0, 0, 1] }
+    },
+    next: {
+      y: 60,
+      scale: 0.9,
+      opacity: 1,
+      zIndex: 2,
+      transition: { duration: 1.2, ease: [0.5, 0, 0, 1] }
+    },
+    upcoming: {
+      y: 110,
+      scale: 0.8,
+      opacity: 1,
+      zIndex: 1,
+      transition: { duration: 1.2, ease: [0.5, 0, 0, 1] }
+    },
+    exit: {
+      y: -120,
+      scale: 0.8,
+      opacity: 0,
+      transition: { duration: 1.5, ease: [0.5, 0, 0, 1] }
+    },
+    enter: {
+      y: 170,
+      scale: 0.7,
+      opacity: 0,
+      zIndex: -1,
+      transition: { duration: 1.2, ease: [0.5, 0, 0, 1] }
+    }
+  };
 
-    return (
-        <FeaturBox>
-            <Container>
-                <CardContainer>
-                    <AnimatePresence initial={false}>
-                        {displayedCards.map((card) => (
-                            <CardWrapper
-                                key={card.key || card.id}
-                                initial="enter"
-                                animate={card.position}
-                                exit="exit"
-                                variants={cardVariants}
-                            >
-                                <TransactionCard item={card} />
-                            </CardWrapper>
-                        ))}
-                    </AnimatePresence>
-                </CardContainer>
-            </Container>
-        </FeaturBox>
-    );
+  return (
+    <FeaturBox>
+      <Container>
+        <CardContainer>
+          <AnimatePresence initial={false}>
+            {displayedCards.map((card) => (
+              <CardWrapper
+                key={card.key || card.id}
+                initial="enter"
+                animate={card.position}
+                exit="exit"
+                variants={cardVariants}
+              >
+                <SlideCard item={card} />
+              </CardWrapper>
+            ))}
+          </AnimatePresence>
+        </CardContainer>
+      </Container>
+    </FeaturBox>
+  );
 }
 
 const FeaturBox = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
+  overflow: hidden;
   justify-content: center;
-  height: 280px;
   width: 100%;
   max-width: 100%;
+  height: 100%;
   background: linear-gradient(180deg, var(--gray-grad-1) 0%, var(--white) 80%);
-
+  z-index: 0;
 `;
 
 const Container = styled.div`
-  padding: 0 1.5rem;
+  padding: 0 36px;
   width: 100%;
   height: 100%;
   display: flex;
@@ -188,10 +180,10 @@ const Container = styled.div`
 
 const CardContainer = styled.div`
   position: relative;
-  padding: 22px;
+  padding: 40px 0;
   width: 100%;
   max-width: 350px;
-  height: 280px;
+  height: 100%;
   mask-image: linear-gradient(to bottom, rgba(0,0,0,1) 30%, rgba(0,0,0,0) 100%);
   -webkit-mask-image: linear-gradient(to bottom, rgba(0,0,0,1) 30%, rgba(0,0,0,0) 100%);
 `;
@@ -208,13 +200,15 @@ const CardWrapper = styled(motion.div)`
 `;
 
 const Card = styled.div`
-  background-color: white;
-  border-radius: 1rem;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
-  padding: 1rem;
+  border-radius: 18px;
+  padding: 16px 20px;
   display: flex;
   justify-content: space-between;
+  /* background: linear-gradient(180deg, var(--gray-grad-1) 0%, var(--white) 40%); */
+  background-color: var(--white);
   align-items: center;
+  box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.06), 0px 0px 0px 1px inset rgba(0, 0, 0, 0.06);
+  background-clip: border-box;
   width: 100%;
 `;
 
@@ -224,8 +218,8 @@ const LeftSection = styled.div`
 `;
 
 const IconContainer = styled.div`
-  width: 2.5rem;
-  height: 2.5rem;
+  width: 40px;
+  height: 40px;
   border-radius: 50%;
   background-color: #f3f4f6;
   display: flex;
@@ -233,6 +227,10 @@ const IconContainer = styled.div`
   justify-content: center;
   margin-right: 0.75rem;
   font-size: 1.25rem;
+  img{
+    width: 20px;
+    height: 20px;
+  }
 `;
 
 const TextContainer = styled.div`
@@ -243,14 +241,15 @@ const TextContainer = styled.div`
 
 // Blocks that vary in width based on data content
 const TitleBlock = styled(motion.div)`
-  height: 16px;
+  height: 12px;
   background-color: #e5e7eb;
-  border-radius: 4px;
+  border-radius: 5px;
+  opacity: 0.6;
 `;
 
 const CategoryBlock = styled(motion.div)`
-  height: 12px;
+  height: 10px;
   background-color: #e5e7eb;
-  border-radius: 4px;
-  opacity: 0.7;
+  border-radius: 5px;
+  opacity: 0.4;
 `;
