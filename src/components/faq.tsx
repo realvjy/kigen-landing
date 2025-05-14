@@ -26,7 +26,7 @@ export default function FAQ() {
     },
     {
       question: "How to use this plugin",
-      description: "UI is pretty intuitive, you can use it by following the instructions in the plugin. You can check these demo shared.",
+      description: "UI is pretty intuitive, you can use it by following the instructions in the plugin.",
     },
     {
       question: "What's license for it",

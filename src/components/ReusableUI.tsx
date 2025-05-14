@@ -169,6 +169,9 @@ const ConicButton = styled.button`
   background-origin: border-box;
   background-clip: padding-box, border-box;
   overflow: visible;
+  display: flex;
+  align-items: center;
+  gap: 8px;
   z-index: 0;
 
   --border-angle: 0turn;

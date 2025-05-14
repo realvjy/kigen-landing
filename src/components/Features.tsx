@@ -189,7 +189,7 @@ const FeatureGrid = styled.div`
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 20px;
-  margin-top: 20px;
+  margin-top: 60px;
   @media (max-width: 768px) {
     grid-template-columns: repeat(2, 1fr);
   }
@@ -220,7 +220,7 @@ const FeatureContent = styled.div`
   flex-direction: column;
   h3 {
     font-size: 20px;
-    font-weight: 450;
+    font-weight: 500;
     margin-bottom: 0.5rem;
     position: absolute;
     bottom: 0;
@@ -242,7 +242,7 @@ const FeatureCard = styled.div`
   overflow: hidden;
   h3 {
     font-size: 20px;
-    font-weight: 450;
+    font-weight: 500;
     margin-bottom: 0.5rem;
   }
 

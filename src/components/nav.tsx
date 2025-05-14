@@ -21,8 +21,8 @@ export default function Nav() {
           <Right>
             <Links>
               <LinkScroll href="#features">Features</LinkScroll>
-              <a href="https://s.vjy.me/project-ds">Install</a>
-              <LinkScroll href="#faq">faq</LinkScroll>
+              <a href="https://s.vjy.me/kigen-plugin">Install</a>
+              <LinkScroll href="#faq">FAQs</LinkScroll>
             </Links>
           </Right>
         </NavWrap>

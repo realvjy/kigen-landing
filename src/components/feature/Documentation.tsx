@@ -151,6 +151,7 @@ const Container = styled.div`
 const Wrapper = styled.div`
   position: relative;
   background: linear-gradient(180deg, var(--gray-grad-1) 0%, var(--white) 80%);
+  box-shadow: 0px 1px 1px 0px inset rgb(255, 255, 255);
   display: flex;
   justify-content: center;
   font-size: 16px;
