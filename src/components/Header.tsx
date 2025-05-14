@@ -5,6 +5,7 @@ import * as React from 'react';
 import styled from 'styled-components'
 import { AnimatedConicButton, Container, Gradient, SmallTag, TagWrapper } from "./ReusableUI";
 import { motion } from "framer-motion";
+import { FigmaIcon } from "./icons";
 
 
 
@@ -15,13 +16,13 @@ export default function Header() {
                 <Logo>
                     <Content>
                         <TagWrapper>
-                            <SmallTag className="white">Early access sending...</SmallTag>
+                            <SmallTag className="white">Beta version released</SmallTag>
                         </TagWrapper>
                         <h1>Create Design System <Gradient $variant="blue">Variables</Gradient> and <Gradient $variant="orange">Styles</Gradient> Fast</h1>
                         <p>A faster way to start design systems. Use Kigen to create your core variables and styles in just a few clicks.</p>
                     </Content>
                     <ButtonWrap>
-                        <AnimatedConicButton href="https://s.vjy.me/project-ds" className="install">Join waitlist</AnimatedConicButton>
+                        <AnimatedConicButton href="https://s.vjy.me/kigen-plugin" className="install"><FigmaIcon height={16} width={16} /> Install on Figma</AnimatedConicButton>
                     </ButtonWrap>
                 </Logo>
             </Container>

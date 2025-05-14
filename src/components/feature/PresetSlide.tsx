@@ -165,6 +165,8 @@ const FeaturBox = styled.div`
   max-width: 100%;
   height: 100%;
   background: linear-gradient(180deg, var(--gray-grad-1) 0%, var(--white) 80%);
+  box-shadow: 0px 1px 1px 0px inset rgb(255, 255, 255);
+  border-radius: 16px 16px 0 0;
   z-index: 0;
 `;
 
@@ -204,7 +206,6 @@ const Card = styled.div`
   padding: 16px 20px;
   display: flex;
   justify-content: space-between;
-  /* background: linear-gradient(180deg, var(--gray-grad-1) 0%, var(--white) 40%); */
   background-color: var(--white);
   align-items: center;
   box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.06), 0px 0px 0px 1px inset rgba(0, 0, 0, 0.06);

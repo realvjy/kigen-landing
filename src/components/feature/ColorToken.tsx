@@ -448,7 +448,9 @@ const FeaturBox = styled.div`
 
 const Wrapper = styled.div`
   position: relative;
-  background: linear-gradient(180deg, var(--gray-grad-1) 0%, var(--white) 90%);
+  background: linear-gradient(180deg, var(--gray-grad-1) 0%, var(--white) 80%);
+  box-shadow: 0px 1px 1px 0px inset rgb(255, 255, 255);
+  border-radius: 16px 16px 0 0;
   display: flex;
   justify-content: center;
   font-size: 16px;
@@ -544,8 +546,8 @@ const MainContent = styled.div`
   width: 100%;
   position: relative;
   display: flex;
-  mask-image: linear-gradient(to bottom, rgba(0,0,0,1) 60%, rgba(0,0,0,0) 100%);
-  -webkit-mask-image: linear-gradient(to bottom, rgba(0,0,0,1) 60%, rgba(0,0,0,0) 100%);
+  mask-image: linear-gradient(to bottom, rgba(0,0,0,1) 60%, rgba(0,0,0,0) 95%);
+  -webkit-mask-image: linear-gradient(to bottom, rgba(0,0,0,1) 60%, rgba(0,0,0,0) 95%);
   flex-direction: column;
   align-items: center;
 `;
@@ -652,17 +654,19 @@ const ColorGrid = styled.div`
   display: grid;
   grid-template-columns: repeat(5, 1fr);
   grid-template-rows: repeat(2, 1fr);
-  gap: 12px;
-  width: 100%;
-  height: 48px;
+  gap: 14px;
+  width: fit-content;
+  height: 24px;
   padding: 12px 16px;
   box-sizing: border-box;
+  margin: 0 auto;
   .color-cell {
-    border-radius: 8px;
+    border-radius: 6px;
     width: 100%;
     height: 100%;
-    min-height: 32px;
-    min-width: 32px;
+    height: 24px;
+    width: 24px;
+    padding: 4px;
     background: #eee;
     box-shadow: 0 1px 2px rgba(0,0,0,0.03);
     border: 1px solid rgba(0,0,0,0.04);
