@@ -149,6 +149,10 @@ const ScreenUI = styled.div`
     position: relative;
     --border-width: 1px;
     --border-radius: 16px;
+    @media (max-width: 768px) {
+        --border-width: 1px;
+        --border-radius: 8px;
+    }
     z-index: 1;
     position: relative;
     border-radius: var(--border-radius);
@@ -195,9 +199,10 @@ const ScreenUI = styled.div`
     .kigen-ui{
         max-width: 320px;
         box-shadow: rgba(0, 0, 0, 0.04) 0px 0px 2px, rgba(0, 0, 0, 0.1) 0px 20px 34px, rgba(0, 0, 0, 0.11) 0px 4px 10px, rgba(0, 0, 0, 0.1) 0px 4px 24px, rgba(0, 0, 0, 0.1) 0px 0px 1px 1px;
-        border-radius: var(--border-radius);
-        @media (max-width: 500px) {
+        border-radius: 12px;
+        @media (max-width: 768px) {
             max-width: 200px;
+            border-radius: 8px;
         }
     }
     .plugin-ui{
@@ -212,6 +217,8 @@ const ScreenUI = styled.div`
     .figma-ui{
         width: 100%;
         border-radius: var(--border-radius);
+        @media (max-width: 500px) {
+        }
     }
 
 
