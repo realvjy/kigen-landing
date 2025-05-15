@@ -55,7 +55,6 @@ export const SmallTag = styled.div`
   font-size: 13px;
   line-height: 16px;
   font-weight: 500;
-  letter-spacing: -0.2px;
   padding: 4px 12px;
   border-radius: var(--radii-full);
   box-shadow: var(--shadow-border);

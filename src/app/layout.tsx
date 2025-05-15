@@ -5,7 +5,7 @@ import localFont from 'next/font/local'
 import StyledComponentsRegistry from "@/components/StyledComponentsRegistry";
 import { interDisplay, jetBrainsMono } from "@/assets/fonts";
 import seoData from "@/components/next-seo.config";
-
+import AnalyticsProvider from "@/lib/analytics";
 // Use local font instead (you'll need to download the font files)
 
 
@@ -70,9 +70,11 @@ export default function RootLayout({
     <html lang="en">
       <body className={`${interDisplay.variable} font-feature-ss01 ${jetBrainsMono.variable}`}
       >
-        <StyledComponentsRegistry>
-          {children}
-        </StyledComponentsRegistry>
+        <AnalyticsProvider>
+          <StyledComponentsRegistry>
+            {children}
+          </StyledComponentsRegistry>
+        </AnalyticsProvider>
       </body>
     </html>
   );

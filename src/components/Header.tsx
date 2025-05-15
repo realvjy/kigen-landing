@@ -16,7 +16,7 @@ export default function Header() {
                 <Logo>
                     <Content>
                         <TagWrapper>
-                            <SmallTag className="white">Beta version released</SmallTag>
+                            <SmallTag className="pink">v1.0 version released</SmallTag>
                         </TagWrapper>
                         <h1>Create Design System <Gradient $variant="blue">Variables</Gradient> and <Gradient $variant="orange">Styles</Gradient> Fast</h1>
                         <p>A faster way to start design systems. Use Kigen to create your core variables and styles in just a few clicks.</p>
@@ -123,7 +123,8 @@ const Content = styled.div`
     color: var(--gray2);
     font-weight: 400;
     max-width: 500px;
-    letter-spacing: -0.1px;
+    letter-spacing: 0.1px;
+    line-height: 28px;
     @media (max-width: 700px) {
         font-size: 16px;
     }

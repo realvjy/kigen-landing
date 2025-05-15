@@ -26,7 +26,11 @@ export default function FAQ() {
     },
     {
       question: "How to use this plugin",
-      description: "UI is pretty intuitive, you can use it by following the instructions in the plugin.",
+      description: (
+        <>
+          UI is pretty intuitive, you can use it by following the instructions in the plugin. Check launch <a href="https://x.com/realvjy/status/1922979962425934029">demo here</a>.
+        </>
+      ),
     },
     {
       question: "What's license for it",
