@@ -1,7 +1,6 @@
 import React, { useEffect, useId, useState } from 'react';
 import { motion, useAnimation } from 'framer-motion';
 
-// Define types for our components
 export type Direction = 'left' | 'right';
 
 interface PathData {
@@ -37,7 +36,6 @@ export const AnimatedPathGradientDef: React.FC<AnimatedPathGradientDefProps> = (
     gradientColor,
     gradientSize = 1
 }) => {
-    // We'll animate x1 and x2 from -100% to 100% (or 0% to 200%) in a loop
     const controls = useAnimation();
 
     useEffect(() => {
@@ -71,7 +69,6 @@ export const AnimatedPathGradientDef: React.FC<AnimatedPathGradientDefProps> = (
         </motion.linearGradient>
     );
 };
-// The animated path component that uses the gradient
 export const AnimatedPath: React.FC<AnimatedPathProps> = ({
     id,
     pathData,

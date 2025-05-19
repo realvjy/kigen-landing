@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import styled from 'styled-components';
-/// Define prop types for the Amount component
 interface AmountProps {
   isPositive: boolean;
 }
@@ -11,7 +10,6 @@ const Amount = styled.div<AmountProps>`
     color: ${props => props.isPositive ? '#10b981' : '#6b7280'};
 `;
 
-// Define Transaction item type
 interface TransactionItem {
   id: number;
   title: string;
@@ -26,7 +24,6 @@ interface SlideCardProps {
   item: TransactionItem;
 }
 
-// Transaction Card Component
 const SlideCard: React.FC<SlideCardProps> = ({ item }) => {
   const isPositive = item.color === '#10b981';
 
@@ -94,7 +91,6 @@ export default function PresetSlide() {
     return () => clearInterval(interval);
   }, []);
 
-  // Card animation variants
   const cardVariants = {
     main: {
       y: 0,
@@ -240,7 +236,6 @@ const TextContainer = styled.div`
   gap: 8px;
 `;
 
-// Blocks that vary in width based on data content
 const TitleBlock = styled(motion.div)`
   height: 12px;
   background-color: #e5e7eb;

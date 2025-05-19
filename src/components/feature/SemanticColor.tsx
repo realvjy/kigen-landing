@@ -52,7 +52,6 @@ export default function TypographyToken() {
         </GridWrap>
         <SVGWrap>
           <svg width="350" height="230" viewBox="0 0 350 230" fill="none" xmlns="http://www.w3.org/2000/svg">
-            {/* Definitions must be FIRST */}
             <defs>
               {paths.map(({ id, duration, direction, gradientColor }) => (
                 <AnimatedPathGradientDef
@@ -102,10 +101,8 @@ export default function TypographyToken() {
               </filter>
             </defs>
 
-            {/* Background gradient */}
             <rect width="350" height="230" fill="url(#paint0_linear_316_38223)" />
 
-            {/* Dotted background paths */}
             {paths.map(({ id, d }) => (
 
               <path key={`bg-${id}`} d={d} stroke="black" strokeOpacity="0.2" strokeDasharray="3 2" fill="none" />
@@ -128,7 +125,6 @@ export default function TypographyToken() {
               />
             ))}
 
-            {/* UI Rectangles */}
             <g filter="url(#filter0_d_316_38223)">
               <rect x="75" y="114" width="200" height="56" rx="16" fill="url(#paint1_linear_316_38223)" />
               <rect x="75.5" y="114.5" width="199" height="55" rx="15.5" stroke="black" strokeOpacity="0.08" />

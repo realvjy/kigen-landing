@@ -8,7 +8,6 @@ import AnimatedPathTrail from '../AnimatedPathTrail';
 import { Container } from '../ReusableUI';
 
 const SemanticColor = () => {
-    // const [activeConnection, setActiveConnection] = useState(0);
     const pathRef = useRef<SVGPathElement>(null);
     const dotRef = useRef<SVGCircleElement>(null);
     const trailRef = useRef<SVGPathElement>(null);
@@ -17,11 +16,10 @@ const SemanticColor = () => {
     useEffect(() => {
         if (!pathRef.current || !trailRef.current) return;
 
-        // Create animated dash offset for energy pulse effect
         const trailAnimation = animate(
             trailRef.current,
             {
-                strokeDashoffset: [0, -30],  // Animate the dash offset to create moving effect
+                strokeDashoffset: [0, -30],
                 easing: 'linear',
                 duration: 1500,
                 loop: true
@@ -32,50 +30,47 @@ const SemanticColor = () => {
             trailAnimation.pause();
         };
     }, []);
-    // Token data matches the image
     const tokens = [
         {
             id: 'text-accent',
-            color: '#FFD700', // Yellow
+            color: '#FFD700',
             top: '173px',
             left: '120px',
             path: 'M 120 173 Q 180 250, 240 343',
         },
         {
             id: 'bg-primary',
-            color: '#FFA6E6', // Pink
+            color: '#FFA6E6',
             top: '123px',
             left: '500px',
             path: 'M 500 123 Q 450 230, 360 343',
         },
         {
             id: 'icon-accent',
-            color: '#00A173', // Green
+            color: '#00A173',
             top: '263px',
             left: '668px',
             path: 'M 668 263 Q 600 290, 503 343',
         },
         {
             id: 'border-primary',
-            color: '#DA22FF', // Purple
+            color: '#DA22FF',
             top: '498px',
             left: '602px',
             path: 'M 602 498 Q 500 450, 420 360',
         }
     ];
 
-    // Colors in the center palette
     const colorPalette = [
-        '#FF9940', // Orange
-        '#FF5733', // Red-Orange
-        '#E91E63', // Pink
-        '#5E5AFF', // Blue
-        '#00C07F'  // Green
+        '#FF9940',
+        '#FF5733',
+        '#E91E63',
+        '#5E5AFF',
+        '#00C07F'
     ];
 
     return (
         <Container>
-            {/* Token Pills */}
             {tokens.map((token, index) => (
                 <TokenPill
                     key={token.id}
@@ -93,7 +88,7 @@ const SemanticColor = () => {
             <div style={{ width: '150px', height: '100%' }}>
                 <AnimatedPathTrail
                     pathData="M9 6L33.4959 6C42.3324 6 49.4959 13.1634 49.4959 22L49.4959 70C49.4959 78.8366 56.6593 86 65.4959 86H79"
-                    viewBox="0 0 90 90"  // Should match your path's natural dimensions
+                    viewBox="0 0 90 90"
                     baseColor="#ccc"
                     trailColor="#00f"
                     trailWidth={8}
@@ -104,7 +99,6 @@ const SemanticColor = () => {
                     svgHeight={90}
                 />
             </div>
-            {/* Center color palette */}
             <ColorPalette>
                 {colorPalette.map((color, index) => (
                     <ColorBox
@@ -120,7 +114,6 @@ const SemanticColor = () => {
     );
 };
 
-// Styled Components
 
 const TokenPill = styled.div<{ active?: boolean }>`
   position: absolute;

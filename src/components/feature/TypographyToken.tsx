@@ -96,7 +96,6 @@ export default function TypographyToken() {
                 </GridWrap>
                 <SVGWrap >
                     <svg width="350" height="230" viewBox="0 0 350 230" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        {/* Definitions must be FIRST */}
                         <defs>
                             {paths.map(({ id, duration, direction, gradientColor }) => (
                                 <AnimatedPathGradientDef
@@ -109,7 +108,6 @@ export default function TypographyToken() {
                                 />
                             ))}
 
-                            {/* Animation keyframes */}
                             <style>
                                 {paths.map(({ id }) => `
                                     @keyframes dash${id} {
@@ -147,16 +145,13 @@ export default function TypographyToken() {
                             </linearGradient>
                         </defs>
 
-                        {/* Background gradient */}
                         <rect width="350" height="230" fill="url(#paint0_linear_292_36994)" />
 
-                        {/* Original dotted paths (visible but will be overlaid with animated paths) */}
                         <path d="M93 124H252" stroke="url(#paint1_radial_292_36994)" strokeDasharray="2 2" />
                         <path d="M93 95H252" stroke="url(#paint2_radial_292_36994)" strokeDasharray="2 2" />
                         <path d="M94.5 74C94.1 74 93 74 74 74V156H94.5" stroke="url(#paint3_linear_292_36994)" strokeLinecap="round" />
                         <path d="M244.25 95C244.64 95 245.713 95 264.25 95V156H244.25" stroke="url(#paint4_linear_292_36994)" strokeLinecap="round" />
 
-                        {/* Animated overlay paths */}
                         {paths.map(({ id, d, direction, duration, gradientColor }, index) => (
                             <AnimatedPath
                                 key={`anim-${id}`}

@@ -6,10 +6,6 @@ import StyledComponentsRegistry from "@/components/StyledComponentsRegistry";
 import { interDisplay, jetBrainsMono } from "@/assets/fonts";
 import seoData from "@/components/next-seo.config";
 import AnalyticsProvider from "@/lib/analytics";
-// Use local font instead (you'll need to download the font files)
-
-
-
 
 
 

@@ -22,7 +22,6 @@ export default function Documentation() {
 
   const [key, setKey] = useState(0);
 
-  // Regenerate random widths and restart animation
   const regenerateWidths = () => {
     setSidebarBlocks(sidebarBlocks.map(() => ({ width: generateRandomWidth() })));
     setContentBlocks(contentBlocks.map(() => ({ width: generateRandomWidth() })));
@@ -33,8 +32,7 @@ export default function Documentation() {
   useEffect(() => {
     const interval = setInterval(() => {
       regenerateWidths();
-    }, 4000); // Regenerate every 4 seconds
-
+    }, 4000);
     return () => clearInterval(interval);
   }, []);
 
@@ -140,7 +138,6 @@ const FeaturBox = styled.div`
 `;
 
 
-// Styled Components
 const Container = styled.div`
   display: flex;
   width: 100%;

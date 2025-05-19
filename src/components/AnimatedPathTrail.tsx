@@ -1,4 +1,3 @@
-// In AnimatedPathTrail.tsx
 "use client";
 import { useEffect, useRef } from 'react';
 import { animate, createScope, Scope } from 'animejs';
@@ -43,16 +42,12 @@ export default function AnimatedPathTrail({
             const pathLength = trailPath.getTotalLength();
             const startOffset = pathLength * 0.02;
             const extraOffset = pathLength * 0.1;
-            const loopDelay = 8000; // ms delay before loop restarts
+            const loopDelay = 8000;
 
-            // Setup initial styles
             trailPath.style.strokeDasharray = `${trailLength} ${pathLength}`;
 
             const runAnimation = () => {
-                // Reset position
                 trailPath.style.strokeDashoffset = `-${startOffset}`;
-
-                // Run animation
                 animation = animate(trailPath, {
                     strokeDashoffset: [`-${startOffset}`, `-${pathLength + extraOffset}`],
                     duration: animationDuration,
@@ -62,11 +57,9 @@ export default function AnimatedPathTrail({
                 });
             };
 
-            // Start the animation
             runAnimation();
         });
 
-        // Clean up
         return () => {
             scope.current?.revert();
             if (timeoutId) clearTimeout(timeoutId);

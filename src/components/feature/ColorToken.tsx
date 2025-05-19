@@ -5,7 +5,6 @@ import styled from 'styled-components'
 import Link from "next/link";
 import { AnimatePresence, motion, useAnimation } from 'framer-motion';
 
-// Define interface for carousel items
 interface CarouselItem {
   id: string;
   value: number;
@@ -18,10 +17,8 @@ interface CarouselItem {
 
 export default function ColorToken() {
 
-  // Original items
   const items: number[] = [1, 2, 3, 4, 5];
 
-  // Colors for better visibility
   const colors: string[] = [
     "bg-red-500",
     "bg-blue-500",
@@ -117,29 +114,20 @@ export default function ColorToken() {
   const [isAnimating, setIsAnimating] = useState<boolean>(false);
   const [displayItems, setDisplayItems] = useState<CarouselItem[]>([]);
 
-  // When we need to instantly reposition items
   const needsRepositioning = useRef<boolean>(false);
 
-  // Initialize the display items on mount
   useEffect(() => {
-    // Create display items with unique IDs and extended positions
     initializeDisplayItems();
   }, []);
 
-  // Initialize display items with buffer on both sides
   const initializeDisplayItems = (): void => {
-    // Create a larger window of items for seamless scrolling
-    // We'll show 5 visible items, but render 9 total (2 buffers on each side)
     const initialItems: CarouselItem[] = [];
 
-    // Create array with position IDs that span beyond our items
-    // e.g., for a buffer of 2 on each side: [-2, -1, 0, 1, 2, 3, 4, 5, 6]
     for (let i = -2; i <= items.length + 1; i++) {
-      // Calculate which item should appear at this position
       const itemIndex = ((i % items.length) + items.length) % items.length;
 
       initialItems.push({
-        id: `item-${i}`, // Unique ID for React
+        id: `item-${i}`,
         value: items[itemIndex],
         color: colors[itemIndex],
         logo: logos[itemIndex],
@@ -157,37 +145,27 @@ export default function ColorToken() {
 
     setIsAnimating(true);
 
-    // Move the carousel
     const newIndex = currentIndex + (direction === 'right' ? 1 : -1);
     setCurrentIndex(newIndex);
 
-    // Mark that we'll need to reposition items after animation
     needsRepositioning.current = true;
 
-    // Reset animation state after transition
     setTimeout(() => {
       setIsAnimating(false);
     }, 500);
   };
 
-  // After animation, reposition items that went off-screen
   useEffect(() => {
     if (!isAnimating && needsRepositioning.current) {
       needsRepositioning.current = false;
 
-      // Update items positions to maintain the buffer on both sides
       setDisplayItems(prev => {
-        // Create new array based on the current index
         const updatedItems: CarouselItem[] = [];
-
-        // Create a window that maintains proper buffers around the current index
-        // For a buffer of 2 on each side: [currentIndex-2, currentIndex-1, ..., currentIndex+items.length+1]
         for (let i = currentIndex - 2; i <= currentIndex + items.length + 1; i++) {
-          // Calculate which item to display at this position
           const itemIndex = ((i % items.length) + items.length) % items.length;
 
           updatedItems.push({
-            id: `item-${i}`, // Ensure each position has a stable, unique ID
+            id: `item-${i}`,
             value: items[itemIndex],
             color: colors[itemIndex],
             logo: logos[itemIndex],
@@ -212,7 +190,6 @@ export default function ColorToken() {
     return () => clearInterval(interval);
   }, [isAnimating]);
 
-  // Interface for visual properties
   interface VisualProps {
     x: number;
     scale: number;
@@ -220,24 +197,18 @@ export default function ColorToken() {
     zIndex: number;
   }
 
-  // Get visual properties based on relative position to the current index
-  // Get visual properties based on relative position to the current index
   const getVisualProps = (position: number): VisualProps => {
     const relativePos = position - currentIndex;
 
-    // Carousel constants
     const LOGO_WIDTH = 42;
     const SPACING = 20;
     const CONTAINER_WIDTH = 350;
     const VISIBLE_ITEMS = 5;
-    const MANUAL_X_ADJUST = -22; // Tweak this value for perfect centering
+    const MANUAL_X_ADJUST = -22;
 
-    // Hide items outside the visible window
     if (relativePos < -2 || relativePos > 2) {
       return { x: relativePos < 0 ? -CONTAINER_WIDTH : CONTAINER_WIDTH, scale: 0, opacity: 0, zIndex: 0 };
     }
-
-    // Calculate the center position for each logo
     const first_center =
       ((CONTAINER_WIDTH - (VISIBLE_ITEMS * LOGO_WIDTH + (VISIBLE_ITEMS - 1) * SPACING)) / 2) +
       LOGO_WIDTH / 2;
@@ -245,10 +216,8 @@ export default function ColorToken() {
       first_center + i * (LOGO_WIDTH + SPACING)
     );
 
-    // Map relativePos (-2 to 2) to index (0 to 4)
     const idx = relativePos + 2;
     const container_center = CONTAINER_WIDTH / 2;
-    // Add manual adjust for pixel-perfect centering
     const x = center_positions[idx] - container_center + MANUAL_X_ADJUST;
 
     const scales = [1, 1, 1.4, 1, 1];
@@ -356,11 +325,11 @@ export default function ColorToken() {
                         viewBox="0 0 54 200"
                         style={{
                           position: 'absolute',
-                          top: '50%', // Adjust as needed
+                          top: '50%',
                           left: '50%',
                           transform: 'translate(-50%, -50%)',
                           pointerEvents: 'none',
-                          zIndex: 5, // behind the circle if needed
+                          zIndex: 5,
                         }}
                         initial="initial"
                         animate="animate"

@@ -209,10 +209,10 @@ const ConicButton = styled.button`
 
 const ConicButtonWrapper = styled.div`
   position: relative;
-  display: inline-flex; /* Ensures wrapper shrinks to button size */
+  display: inline-flex;
   align-items: center;
   justify-content: center;
-  vertical-align: middle; /* Helps with inline alignment in text */
+  vertical-align: middle;
 `;
 
 export const AnimatedConicButton = ({ children, href, ...props }: AnimatedConicButtonProps) => (

@@ -35,10 +35,9 @@ export default function SuzukaAnimation() {
     useEffect(() => {
         if (!pathRef.current || !carRef.current) return;
 
-        // Car animation using createMotionPath (two-argument form)
         const carAnimation = animate(
-            carRef.current, // Argument 1: targets
-            {              // Argument 2: parameters
+            carRef.current,
+            {
                 easing: 'linear',
                 duration: 5000,
                 loop: true,
@@ -48,8 +47,8 @@ export default function SuzukaAnimation() {
 
         // Path drawing animation (two-argument form)
         const pathAnimation = animate(
-            svg.createDrawable(pathRef.current), // Argument 1: targets (drawable)
-            {                                   // Argument 2: parameters
+            svg.createDrawable(pathRef.current),
+            {
                 draw: '0 1',
                 easing: 'linear',
                 duration: 5000,
@@ -79,8 +78,8 @@ export default function SuzukaAnimation() {
                     </g>
                     <g ref={carRef}>
                         <rect
-                            x="-5"  // Center horizontally
-                            y="-2.5" // Center vertically
+                            x="-5"
+                            y="-2.5"
                             width="10"
                             height="5"
                             rx="1"

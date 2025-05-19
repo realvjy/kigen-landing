@@ -25,10 +25,9 @@ export default function Features() {
   const [duration, setDuration] = useState<number>(2);
   const [strokeColor, setStrokeColor] = useState<string>('#1d1d20');
   const [showBackground, setShowBackground] = useState(true);
-  const path = 'M20 20 C40 10, 65 10, 95 80'; // Example curved path
+  const path = 'M20 20 C40 10, 65 10, 95 80';
 
 
-  // Available animation types
   const animationTypes: Array<'draw' | 'pulse' | 'flow'> = ["draw", "pulse", "flow"];
   const directions: Array<'right' | 'left'> = ["right", "left"];
   const colorOptions: Record<string, string> = {
