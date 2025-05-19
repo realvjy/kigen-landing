@@ -3,7 +3,7 @@ import Image from "next/image";
 import styles from "./page.module.css";
 import * as React from 'react';
 import styled from 'styled-components'
-import { AnimatedConicButton, Container, Gradient, SmallTag, TagWrapper } from "./ReusableUI";
+import { AnimatedConicButton, Container, Glow, Gradient, SmallTag, TagWrapper } from "./ReusableUI";
 import { motion } from "framer-motion";
 import { FigmaIcon } from "./icons";
 
@@ -16,7 +16,7 @@ export default function Header() {
                 <Logo>
                     <Content>
                         <TagWrapper>
-                            <SmallTag className="pink">v1.0 version released</SmallTag>
+                            <SmallTag className="teal">v1.0 version released</SmallTag>
                         </TagWrapper>
                         <h1>Create Design System <Gradient $variant="blue">Variables</Gradient> and <Gradient $variant="orange">Styles</Gradient> Fast</h1>
                         <p>A faster way to start design systems. Use Kigen to create your core variables and styles in just a few clicks.</p>
@@ -32,6 +32,7 @@ export default function Header() {
                     alt="Background Blur"
                     className="bg-blur"
                 />
+                <ScreenGlow />
                 <ScreenUI>
                     <img className="figma-ui" src="figma-ui-light.png" />
                     <div className="blur-bottom"></div>
@@ -62,6 +63,41 @@ const Section = styled.section`
   
 
 `
+
+
+export const ScreenGlow = styled.div`
+  position: absolute;
+  inset: 0; 
+  z-index: 0;
+  top: 50px;
+  left: 50%;
+  transform: translateX(-50%);
+  border-radius: 50%;
+  height: 200px;
+  width: 90%;
+  pointer-events: none;
+  background: linear-gradient(
+    90deg,
+    #ff4242,
+    #f7ff01,
+    #42ff97,
+    #42d3ff,
+    #4542ff,
+    #a142ff
+  );
+  filter: blur(50px);
+  opacity: 0.8;
+  animation: glowSlide 8s linear infinite;
+  background-size: 400%;
+  @keyframes glowSlide {
+    0% {
+      background-position: 0% 50%;
+    }
+    100% {
+      background-position: 400% 50%;
+    }
+  }
+`;
 
 
 const ScreenUIWrapper = styled.div`
@@ -109,7 +145,7 @@ const Content = styled.div`
     align-items: center;
     max-width: 600px;
     h1{
-        font-size: 48px;
+        font-size: 54px;
         font-weight: 400;
         line-height: 110%;
         letter-spacing: -0.5px;
@@ -143,8 +179,6 @@ const ScreenUI = styled.div`
     max-width: 1200px;
     display: flex;
     flex-direction: column;
-    /* background-color: rgba(40,40,40,0.2); */
-   
     backdrop-filter: blur(20px);
     margin: 0 auto;
     position: relative;
@@ -170,7 +204,6 @@ const ScreenUI = styled.div`
         /* background: linear-gradient(90deg, #A142FF 0%, #42D0FF 20.67%, #42A1FF 44.71%, #A1FF42 75%, #FF4242 100%); */
         background-size: 400% 100%;
         background-position: 0% 50%;
-        /* animation: glowSlide 6s linear infinite; */
 
         -webkit-mask: 
             linear-gradient(#fff 0 0) content-box,

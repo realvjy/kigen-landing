@@ -52,7 +52,7 @@ export const Gradient = styled.span<{ $variant?: 'blue' | 'orange' | 'green' }>`
 export const SmallTag = styled.div`
   display: inline-flex;
   align-items: center;
-  font-size: 13px;
+  font-size: 14px;
   line-height: 16px;
   font-weight: 500;
   padding: 4px 12px;
@@ -121,7 +121,7 @@ type AnimatedConicButtonProps = {
   href?: string;
 } & ButtonHTMLAttributes<HTMLButtonElement> & React.AnchorHTMLAttributes<HTMLAnchorElement>;
 
-const Glow = styled.div`
+export const Glow = styled.div`
   position: absolute;
   inset: 0; 
   z-index: 0;

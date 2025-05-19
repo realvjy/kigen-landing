@@ -64,36 +64,6 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   min-height: 100vh;
-  /* &::before{
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-image: url('/dot.svg');
-    background-size: 20px 20px;
-    background-position: 0 0;
-    opacity: 0.3; 
-    pointer-events: none; 
-    z-index: -1;
-  } */
-  &::after {
-    /* content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: radial-gradient(
-      circle at center,
-      transparent 0%,
-      transparent 50%,
-      rgba(0, 0, 0, 0.8) 100% 
-    ); */
-    /* pointer-events: none;
-    z-index: -1; */
-  }
   
 }
 
