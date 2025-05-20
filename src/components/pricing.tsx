@@ -26,7 +26,7 @@ export default function Pricing() {
 
   const pricing = [
     {
-      title: "Individual",
+      title: "Pro Individual",
       description: "Perfect for solo designers & devlopers",
       image: "/indi-pricing.png",
       price: "FREE",
@@ -61,7 +61,6 @@ export default function Pricing() {
                       <div className="price-box">
                         <span className="price">{item.price}</span>
                         <span className="discount">{item.discount}</span>
-                        {/* <span>{item.tag}</span> */}
                       </div>
                     </PricingText>
                     <PricingImage>
@@ -212,7 +211,7 @@ const PricingCard = styled.div`
   overflow: hidden;
   text-align: center;
   h3 {
-    font-size: 22px;
+    font-size: 24px;
     font-weight: 450;
     letter-spacing: -0.4px;
     margin-bottom: 0.5rem;

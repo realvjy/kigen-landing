@@ -58,6 +58,46 @@ export const YouTubeIcon = (props: IconProps) => (
   </svg>
 );
 
+export const DownloadIcon = (props: IconProps) => (
+  <svg
+    width={props.width || 20}
+    height={props.height || 20}
+    fill="currentColor"
+    fillRule="evenodd"
+    clipRule="evenodd"
+    viewBox="0 0 20 20"
+    className="download-icon"
+    xmlns="http://www.w3.org/2000/svg"
+    {...props}
+  >
+    <path
+      d="M11 4.167a1 1 0 1 0-2 0v9.252L4.874 9.293a1 1 0 1 0-1.414 1.414l5.826 5.826a1 1 0 0 0 .764.299 1 1 0 0 0 .657-.292l5.834-5.833a1 1 0 0 0-1.415-1.414L11 13.419z"
+
+    ></path>
+
+  </svg>
+);
+
+export const HeartIcon = (props: IconProps) => (
+  <svg
+    width={props.width || 20}
+    height={props.height || 20}
+    fill="currentColor"
+    fillRule="evenodd"
+    clipRule="evenodd"
+    viewBox="0 0 20 20"
+    className="download-icon"
+    xmlns="http://www.w3.org/2000/svg"
+    {...props}
+  >
+    <path
+      d="M17.367 3.842a4.584 4.584 0 0 0-6.483 0L10 4.725l-.883-.883a4.584 4.584 0 1 0-6.483 6.483l6.66 6.66a1 1 0 0 0 1.413 0l6.66-6.66a4.585 4.585 0 0 0 0-6.483"
+
+    ></path>
+
+  </svg>
+);
+
 export const GlobeIcon = (props: IconProps) => (
   <svg
     width={props.width || 24}

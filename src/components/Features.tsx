@@ -76,6 +76,7 @@ export default function Features() {
   return (
     <Section id="features">
       <Container className="center">
+
         <TagWrapper>
           <SmallTag className="pink">Core Feature</SmallTag>
         </TagWrapper>
@@ -120,6 +121,9 @@ const Section = styled.section`
   flex-direction: column;
   padding-top: 100px;
   margin-top: 100px;
+  @media (max-width: 768px) {
+    margin-top: 40px;
+  }
 `
 
 

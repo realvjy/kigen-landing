@@ -5,55 +5,59 @@ import * as React from 'react';
 import styled from 'styled-components'
 import { AnimatedConicButton, Container, Glow, Gradient, SmallTag, TagWrapper } from "./ReusableUI";
 import { motion } from "framer-motion";
-import { FigmaIcon } from "./icons";
+import { DownloadIcon, FigmaIcon, HeartIcon } from "./icons";
 
 
 
 export default function Header() {
-    return (
-        <Section>
-            <Container>
-                <Logo>
-                    <Content>
-                        <TagWrapper>
-                            <SmallTag className="teal">v1.0 version released</SmallTag>
-                        </TagWrapper>
-                        <h1>Create Design System <Gradient $variant="blue">Variables</Gradient> and <Gradient $variant="orange">Styles</Gradient> Fast</h1>
-                        <p>A faster way to start design systems. Use Kigen to create your core variables and styles in just a few clicks.</p>
-                    </Content>
-                    <ButtonWrap>
-                        <AnimatedConicButton href="https://s.vjy.me/kigen-plugin" className="install"><FigmaIcon height={16} width={16} /> Install on Figma</AnimatedConicButton>
-                    </ButtonWrap>
-                </Logo>
-            </Container>
-            <ScreenUIWrapper>
-                <img
+  return (
+
+    <Section>
+      <Container>
+        <Logo>
+          <Content>
+            <TagWrapper>
+              <SmallTag className="teal">v1.0 version released</SmallTag>
+            </TagWrapper>
+            <h1>Create Design System <Gradient $variant="blue">Variables</Gradient> and <Gradient $variant="orange">Styles</Gradient> Fast</h1>
+            <p>A faster way to start design systems. Use Kigen to create your core variables and styles in just a few clicks.</p>
+          </Content>
+          <ButtonWrap>
+            <AnimatedConicButton href="https://s.vjy.me/kigen-plugin" className="install"><FigmaIcon height={16} width={16} /> Install on Figma</AnimatedConicButton>
+          </ButtonWrap>
+        </Logo>
+      </Container>
+      <ScreenUIWrapper>
+        {/* <img
                     src="/bg-blur.svg"
                     alt="Background Blur"
                     className="bg-blur"
-                />
-                <ScreenGlow />
-                <ScreenUI>
-                    <img className="figma-ui" src="figma-ui-light.png" />
-                    <div className="blur-bottom"></div>
-                    <div className="plugin-ui">
-                        <motion.div
-                            initial={{ opacity: 0, y: 60 }}
-                            animate={{ opacity: 1, y: 0 }}
-                            transition={{
-                                duration: 0.4,
-                                delay: 0.1,
-                                ease: "easeOut"
-                            }}
-                        >
-                            <img className="kigen-ui" src="kigen-ui-light.png" />
-                        </motion.div>
-                    </div>
+                /> */}
+        <ScreenGlow />
+        <ScreenUI>
+          <img className="figma-ui" src="figma-ui-light.png" />
+          <div className="blur-bottom"></div>
+          <div className="plugin-ui">
+            <motion.div
+              initial={{ opacity: 0, y: 60 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{
+                duration: 0.4,
+                delay: 0.1,
+                ease: "easeOut"
+              }}
+            >
+              <img className="kigen-ui" src="kigen-ui-light.png" />
+            </motion.div>
+          </div>
 
-                </ScreenUI>
-            </ScreenUIWrapper>
-        </Section>
-    )
+        </ScreenUI>
+
+      </ScreenUIWrapper>
+    </Section >
+
+
+  )
 }
 
 const Section = styled.section`
@@ -69,7 +73,7 @@ export const ScreenGlow = styled.div`
   position: absolute;
   inset: 0; 
   z-index: 0;
-  top: 50px;
+  top: -10px;
   left: 50%;
   transform: translateX(-50%);
   border-radius: 50%;
@@ -79,13 +83,14 @@ export const ScreenGlow = styled.div`
   background: linear-gradient(
     90deg,
     #ff4242,
-    #f7ff01,
-    #42ff97,
-    #42d3ff,
+    #ffa201,
+    #00b330,
+    #0091bd,
     #4542ff,
-    #a142ff
+    #8102ff,
+    #ff4242
   );
-  filter: blur(50px);
+  filter: blur(40px);
   opacity: 0.8;
   animation: glowSlide 8s linear infinite;
   background-size: 400%;

@@ -25,7 +25,7 @@ export default function FAQ() {
       description: "In Figma, a variable is a value that can be reused throughout your design system. It can be a color, a font, a size, or any other value that you want to use consistently across your design system. We also called it Tokens in our design system.",
     },
     {
-      question: "How to use this plugin",
+      question: "How to use this plugin?",
       description: (
         <>
           UI is pretty intuitive, you can use it by following the instructions in the plugin. Check launch <a href="https://x.com/realvjy/status/1922979962425934029">demo here</a>.
@@ -33,7 +33,7 @@ export default function FAQ() {
       ),
     },
     {
-      question: "What's license for it",
+      question: "What's license for it?",
       description: "Current version is free to use for personal and commercial use. However, we reserve the right to change the license terms in the future.",
     }
 

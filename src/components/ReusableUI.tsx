@@ -125,10 +125,10 @@ export const Glow = styled.div`
   position: absolute;
   inset: 0; 
   z-index: 0;
-top: -8px;
-left: -12px;
-right: -12px;
-bottom: -8px;
+  top: -8px;
+  left: -12px;
+  right: -12px;
+  bottom: -8px;
   border-radius: inherit;
   pointer-events: none;
   transform: scale(0.7);
@@ -161,7 +161,7 @@ const ConicButton = styled.button`
   font-weight: 500;
   color: white;
   text-shadow: 0 1px 0 #000;
-  padding: 12px 20px;
+  padding: 12px 24px;
   border-radius: 16px;
   border: 1px solid transparent;
   cursor: pointer;
@@ -213,11 +213,14 @@ const ConicButtonWrapper = styled.div`
   align-items: center;
   justify-content: center;
   vertical-align: middle;
+  .glow{
+    transform: translateY(10px);
+  }
 `;
 
 export const AnimatedConicButton = ({ children, href, ...props }: AnimatedConicButtonProps) => (
   <ConicButtonWrapper>
-    <Glow />
+    <Glow className='glow' />
     {href ? (
       <ConicButton as="a" href={href} {...props}>
         {children}
